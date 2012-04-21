@@ -29,12 +29,18 @@ CREATE TABLE channels (
 	phone VARCHAR(20),
 	purpose TEXT NOT NULL);
 
+CREATE TABLE speakers (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	user_id INTEGER REFERENCES channels (id)
+		ON DELETE NO ACTION ON UPDATE CASCADE);
+
 CREATE TABLE folders (
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(45) NOT NULL DEFAULT 'Untitled folder',
 	channel_id INTEGER NOT NULL REFERENCES channels (id)
 		ON DELETE CASCADE ON UPDATE CASCADE);
-	
+
 CREATE TABLE presentations (
 	id SERIAL PRIMARY KEY,
 	title VARCHAR(255) NOT NULL DEFAULT 'Untitled',
@@ -49,12 +55,6 @@ CREATE TABLE presentations (
 	folder_id INTEGER NOT NULL REFERENCES folders (id)
 		ON DELETE RESTRICT ON UPDATE CASCADE);
 
-CREATE TABLE speakers (
-	id SERIAL PRIMARY KEY,
-	name VARCHAR(255) NOT NULL,
-	user_id INTEGER REFERENCES channels (id)
-		ON DELETE NO ACTION ON UPDATE CASCADE);
-
 CREATE TABLE subscriptions (
 	id SERIAL PRIMARY KEY,
 	channel_id INTEGER NOT NULL REFERENCES channels (id)
@@ -68,7 +68,8 @@ CREATE TABLE statistics (
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	loads_count INTEGER NOT NULL DEFAULT 0,
 	finishes_count INTEGER NOT NULL DEFAULT 0,
-	plays_count INTEGER NOT NULL DEFAULT 0);
+	plays_count INTEGER NOT NULL DEFAULT 0,
+	PRIMARY KEY (presentation_id, user_id));
 
 CREATE TABLE tags (
 	id SERIAL PRIMARY KEY,
@@ -78,4 +79,5 @@ CREATE TABLE tags_presentations (
 	presentation_id INTEGER REFERENCES presentations (id)
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	tag_id INTEGER REFERENCES presentations (id)
-		ON UPDATE CASCADE ON DELETE CASCADE);
+		ON UPDATE CASCADE ON DELETE CASCADE,
+	PRIMARY KEY (presentation_id,tag_id));
