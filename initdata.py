@@ -111,7 +111,7 @@ def randomTag(): # vygeneruje náhodného taga
 
 tag_presentation = connection.prepare("INSERT INTO tags_presentations (tag_id, presentation_id) VALUES ($1, $2)")
 def randomTP(tags, presentations):
-	addRow(tag_presentation (random.choice(tags), random.choice(presentations)))
+	addRow(tag_presentation, (random.choice(tags), random.choice(presentations)))
 
 # počty jednotlivých záznamů v db
 channelsN = 16
@@ -119,9 +119,9 @@ speakersN = 16
 foldersN = 48
 presentationsN = foldersN*6
 subscriptionsN = 25
-statisticsN = channelsN*presentationsN
+statisticsN = channelsN*presentationsN//20
 tagsN = 64
-tags_presentationsN = tagsN*presentationsN*2
+tags_presentationsN = presentationsN*2
 
 # uložení záznamů do db
 if __name__ == "__main__":
