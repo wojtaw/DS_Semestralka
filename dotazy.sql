@@ -18,3 +18,5 @@ statistics sx,
 	coalesce(sum(ssy.finishes_count)/count(ssy.finishes_count)::float ,.0)as mean_finishes_y
 	from (select * from statistics where presentation_id=245) as ssx, (select * from statistics where presentation_id=34) as ssy) as means
  where sx.presentation_id=245 and sy.presentation_id=34 ;
+
+select s.presentation_id, s.user_id, coalesce(s1.plays_count,0) as plays_x, coalesce(s2.plays_count,0) as plays_y  from statistics s left outer join statistics s1 on (s.user_id = s1.user_id and s1.presentation_id=245) left outer join statistics s2 on (s.user_id = s2.user_id and s2.presentation_id=34) where s.presentation_id in(245,34) order by user;
