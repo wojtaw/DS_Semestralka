@@ -1,0 +1,5 @@
+host:krizik.felk.cvut.cz/student_db12_10
+user:student_db12_10
+port:5434
+schema:public
+password:db12_10
