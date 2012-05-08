@@ -66,10 +66,9 @@ public class MainWindow extends JFrame{
 		presentationTable.addMouseListener(new MouseAdapter(){
 		     public void mouseClicked(MouseEvent e){
 		         if (e.getClickCount() == 2){
-		            System.out.println(" double click" );
-		            }
-		         JTable target = (JTable)e.getSource();
-		         controllerGUI.showPresentationDetails(target.getSelectedRow());
+					JTable target = (JTable)e.getSource();
+					controllerGUI.showPresentationDetails(target.getSelectedRow());
+		         }
 		         }
 		        } );
 		JTableHeader presentationHeader = presentationTable.getTableHeader();

@@ -6,11 +6,15 @@ import java.util.List;
 import ds.entity.Presentations;
 import ds.entity.Speakers;
 import ds.gui.MainWindow;
+import ds.gui.PresentationDetailsWindow;
 import ds.start.AppDriver;
 
 public class ControllerGUI {
 	private AppDriver appDriver;
 	private MainWindow mainWindow;
+	private PresentationDetailsWindow presentationDetailsWindow;
+	private List<Presentations> presentationList;
+	
 
 	public ControllerGUI(AppDriver appDriver) {
 		this.appDriver = appDriver;
@@ -22,6 +26,7 @@ public class ControllerGUI {
 	}
 	
 	public void initGUIData(List<Presentations> presentationList){
+		this.presentationList = presentationList;
 		//Create and fill data object for presentation table
 		Object[][] presentationData = new Object[presentationList.size()][2];
 		for (int i = 0; i < presentationList.size(); i++) {
@@ -33,7 +38,8 @@ public class ControllerGUI {
 
 
 	public void showPresentationDetails(int selectedRow) {
-		System.out.println();
+		System.out.println(presentationList.get(selectedRow).getPresentationTitle());
+		presentationDetailsWindow = new PresentationDetailsWindow(this);
 		
 	}
 
