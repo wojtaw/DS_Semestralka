@@ -26,7 +26,7 @@ public class Main {
 	public static void main(String[] args) {
 		//enterInDb();
 		listSpeakers();
-		//listPresentations();
+		listPresentations();
 		/*
 		try {
 			connectToDbTest();
@@ -83,8 +83,8 @@ public class Main {
 		for (Speakers speaker : speakers){
 				
 			System.out.println(speaker.getSpeakerName() +" | "+ speaker.getSpeakerId() + " | " +
-					speaker.getPresentations().toString());
-			for (Iterator iterator = speaker.getPresentations().iterator(); iterator.hasNext();) {
+					speaker.presentations.toString());
+			for (Iterator iterator = speaker.presentations.iterator(); iterator.hasNext();) {
 				Presentations tmpPresentation = (Presentations) iterator.next();
 				System.out.println("PREDNASEL NA: "+tmpPresentation.getPresentationTitle());
 			}

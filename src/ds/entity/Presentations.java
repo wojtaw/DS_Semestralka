@@ -22,7 +22,7 @@ public class Presentations implements java.io.Serializable {
 	private long presentationId;
 	private String presentationTitle;
 	private String presentationDescription;
-	private String presentationLanguage;
+	private String presentationLanguage;	
 	private Set<Speakers> speakersList = new HashSet<Speakers>();
 	
 	public Presentations(){
@@ -60,7 +60,7 @@ public class Presentations implements java.io.Serializable {
 	}
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "presentations_speakers", joinColumns = { @JoinColumn(name = "presentation_id", referencedColumnName="id") }, inverseJoinColumns = { @JoinColumn(name = "speaker_id",referencedColumnName="id") })
+	@JoinTable(name = "presentations_speakers", joinColumns = { @JoinColumn(name = "speaker_id", referencedColumnName="id") }, inverseJoinColumns = { @JoinColumn(name = "presentation_id",referencedColumnName="id") })	
 	public Set<Speakers> getSpeakers() {
 		return this.speakersList;
 	}
