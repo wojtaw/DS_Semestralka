@@ -9,9 +9,10 @@ public class AppDriver {
 
 	
 	public AppDriver(){
-		hibernateProxy = new HibernateProxy();
 		controllerGUI = new ControllerGUI(this);
-		controllerGUI.initMainGUI(hibernateProxy.retrievePresentationData());
+		controllerGUI.initMainGUI();
+		hibernateProxy = new HibernateProxy();
+		controllerGUI.initGUIData(hibernateProxy.retrievePresentationData());
 	}
 
 }

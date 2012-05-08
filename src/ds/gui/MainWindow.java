@@ -1,6 +1,7 @@
 package ds.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,7 +12,7 @@ import ds.controllers.ControllerGUI;
 public class MainWindow extends JFrame{
 	private ControllerGUI controllerGUI;
 	private BorderLayout windowLayout = new BorderLayout();	
-	private String[] columnNames = {"Presentation name",
+	private String[] presentationComlumnNames = {"Presentation name",
     "Presentation description"};
 	
 	//Components
@@ -35,25 +36,29 @@ public class MainWindow extends JFrame{
 	
 	
 	private void initComponents() {
-		//Init presentation table
-		Object[][] initData = {{"test","test"},{"test2","test2"}};
-		presentationTable = new JTable(initData,columnNames);
-		//presentationTable.setPreffe
-		
-		//Add all components
-		presentationPanel.add(presentationTable);
 		this.add(presentationPanel,BorderLayout.CENTER);
 	}
 	
-	public void redrawPresentationTable(Object[][] data){
-		presentationTable = new JTable(data, columnNames);
-		presentationTable.updateUI();
-		validateUI();
+	public boolean initDataComponents(Object[][] presentationTableData){
+		if(presentationTableData == null) return false;
+		//Init presentation table
+		presentationTable = new JTable(presentationTableData,presentationComlumnNames);
+		presentationTable.setPreferredScrollableViewportSize(new Dimension(300, 450));
+		
+		//Add all components
+		presentationPanel.add(presentationTable);
+		validateGUI();
+		return true;
 	}
 	
-	public void validateUI(){
+	public void redrawPresentationTable(Object[][] data){
+		presentationTable = new JTable(data, presentationComlumnNames);
+		presentationTable.updateUI();
+		validateGUI();
+	}
+	
+	public void validateGUI(){
 		this.validate();
-		this.validateUI();
 	}
 
 	
