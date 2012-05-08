@@ -42,12 +42,11 @@ public class Main {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		
-		Speakers speaker = new Speakers("Lojza");
+		Speakers speaker = new Speakers("TEST22");
 		
 		
 		session.save(speaker);
 		session.getTransaction().commit();
-		
 	}
 
 

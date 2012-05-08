@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name="Speakers")
 public class Speakers implements java.io.Serializable {
@@ -23,8 +25,10 @@ public class Speakers implements java.io.Serializable {
 	}	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@GenericGenerator(name="generator", strategy="increment")
+    @GeneratedValue(generator = "generator")
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id", nullable=false)
 	public long getSpeakerId() {
 		return this.speakerId;
 	}
