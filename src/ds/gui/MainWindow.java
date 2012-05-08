@@ -38,14 +38,22 @@ public class MainWindow extends JFrame{
 		//Init presentation table
 		Object[][] initData = {{"test","test"},{"test2","test2"}};
 		presentationTable = new JTable(initData,columnNames);
+		//presentationTable.setPreffe
 		
 		//Add all components
 		presentationPanel.add(presentationTable);
 		this.add(presentationPanel,BorderLayout.CENTER);
 	}
 	
-	private void redrawPresentationTable(Object[][] data){
+	public void redrawPresentationTable(Object[][] data){
 		presentationTable = new JTable(data, columnNames);
+		presentationTable.updateUI();
+		validateUI();
+	}
+	
+	public void validateUI(){
+		this.validate();
+		this.validateUI();
 	}
 
 	
