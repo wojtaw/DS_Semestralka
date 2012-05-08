@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -23,9 +24,9 @@ import ds.util.HibernateUtil;
 public class Main {
 	
 	public static void main(String[] args) {
-		enterInDb();
-		//initHibernate();
-		//listPresentations();
+		//enterInDb();
+		listSpeakers();
+		listPresentations();
 		/*
 		try {
 			connectToDbTest();
@@ -41,11 +42,14 @@ public class Main {
 	private static void enterInDb() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
+		Set<Speakers> speakers = new HashSet();
 		
-		Speakers speaker = new Speakers("TEST22");
+		speakers.add(new Speakers("My new speaker array 1"));
+		speakers.add(new Speakers("My new speaker array 2"));
 		
 		
-		session.save(speaker);
+		session.save(new Speakers("My new speaker array 1"));
+		session.save(new Speakers("My new speaker array 2"));
 		session.getTransaction().commit();
 	}
 
@@ -56,7 +60,13 @@ public class Main {
 		
 		List<Presentations> presentations = session.createQuery("from Presentations").list();
 		for (Presentations presentation : presentations){
-			System.out.println(presentation.getPresentationTitle());
+			if(!presentation.getSpeakers().isEmpty()) System.out.println(presentation.getPresentationTitle()+" | "+
+					presentation.getSpeakers().toArray()[0].toString());
+			
+			for (Iterator iterator = presentation.getSpeakers().iterator(); iterator.hasNext();) {
+				Speakers tmpSpeaker = (Speakers) iterator.next();
+				System.out.println("PREDNASEL NA: "+tmpSpeaker.getSpeakerName());
+			}			
 		}	
 		
 		session.getTransaction().commit();		
@@ -64,14 +74,20 @@ public class Main {
 	}
 
 
-	private static void initHibernate() {
+	private static void listSpeakers() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		
 		List<Speakers> speakers = session.createQuery("from Speakers").list();
 
 		for (Speakers speaker : speakers){
-			System.out.println(speaker.getSpeakerName() +" | "+ speaker.getSpeakerId());
+			if(!(speaker.presentations == null))
+			System.out.println(speaker.getSpeakerName() +" | "+ speaker.getSpeakerId() + " | " +
+					speaker.presentations.toString());
+			for (Iterator iterator = speaker.presentations.iterator(); iterator.hasNext();) {
+				Presentations tmpPresentation = (Presentations) iterator.next();
+				System.out.println("PREDNASEL NA: "+tmpPresentation.getPresentationTitle());
+			}
 		}	
 
 		//Set<Speakers> speakers = new HashSet<Speakers>();

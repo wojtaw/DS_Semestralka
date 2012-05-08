@@ -1,10 +1,14 @@
 package ds.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -15,6 +19,8 @@ public class Speakers implements java.io.Serializable {
 	private long speakerId;
 	private String speakerName;
 	private long user_id;
+	@ManyToMany(mappedBy="speakers")
+	public Set<Presentations> presentations = new HashSet<Presentations>();
 	
 	public Speakers(){
 		

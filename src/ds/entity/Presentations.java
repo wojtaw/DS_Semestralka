@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name="Presentations")
 public class Presentations implements java.io.Serializable {
@@ -37,7 +39,8 @@ public class Presentations implements java.io.Serializable {
 	}	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GenericGenerator(name="generator", strategy="increment")
+    @GeneratedValue(generator = "generator")	
 	@Column(name = "id")
 	public long getPresentationId() {
 		return this.presentationId;
