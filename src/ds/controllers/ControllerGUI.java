@@ -39,7 +39,8 @@ public class ControllerGUI {
 
 	public void showPresentationDetails(int selectedRow) {
 		System.out.println(presentationList.get(selectedRow).getPresentationTitle());
-		presentationDetailsWindow = new PresentationDetailsWindow(this);
+		Presentations tmpPresentation = presentationList.get(selectedRow);
+		presentationDetailsWindow = new PresentationDetailsWindow(this,tmpPresentation);
 		
 	}
 
