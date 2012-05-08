@@ -48,9 +48,9 @@ public class MainWindow extends JFrame{
 		//Init presentation table
 		presentationTable = new JTable(presentationTableData,presentationComlumnNames);
 		DataTableModel myModel = new DataTableModel();
-		myModel.addData(presentationTableData);
+		myModel.swapData(presentationTableData);
 		
-		presentationTable.setModel(new DataTableModel());
+		presentationTable.setModel(myModel);
 		JTableHeader presentationHeader = presentationTable.getTableHeader();
 		presentationHeader.setBackground(Color.yellow);		
 		presentationTable.setPreferredScrollableViewportSize(new Dimension(300, 450));

@@ -9,44 +9,32 @@ import javax.swing.table.AbstractTableModel;
 public class DataTableModel extends AbstractTableModel{
 	
 	private List<String> columnNames = new ArrayList();
-    private List<List> data = new ArrayList();
+    private Object[][] data = {{"no data","no data"}};
 
     public DataTableModel(){
         columnNames.add("Presentation title");
         columnNames.add("Description");
     }	
+    public void swapData(Object[][] data){
+    	this.data = data;
+    }
     
-    public void addRow(List rowData)
-    {
-        data.add(rowData);
-        fireTableRowsInserted(data.size() - 1, data.size() - 1);
-    }   
-    
-    public void addData(Object[][] tableData)
-    {
-    	for (int i = 0; i < tableData.length; i++) {
-			data.addRow(Arrays.asList(tableData[i][0].toString(),tableData[i][1].toString()));
-		}
-        data.add(rowData);
-        fireTableRowsInserted(data.size() - 1, data.size() - 1);
-    }     
-
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return data[0].length;
 	}
 
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return data.length;
 	}
 
 	@Override
-	public Object getValueAt(int arg0, int arg1) {
+	public Object getValueAt(int row, int col) {
 		// TODO Auto-generated method stub
-		return null;
+		return data[row][col];
 	}
 	
 	@Override
