@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -36,7 +37,7 @@ public class Presentations implements java.io.Serializable {
 	}	
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
 	public long getPresentationId() {
 		return this.presentationId;
@@ -57,11 +58,11 @@ public class Presentations implements java.io.Serializable {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "presentations_speakers", joinColumns = { @JoinColumn(name = "presentation_id", referencedColumnName="id") }, inverseJoinColumns = { @JoinColumn(name = "speaker_id",referencedColumnName="id") })
-	public Set<Speakers> setSpeakers() {
+	public Set<Speakers> getSpeakers() {
 		return this.speakers;
 	}
 
-	public void setSpekers(Set<Speakers> speakers) {
+	public void setSpeakers(Set<Speakers> speakers) {
 		this.speakers = speakers;
 	}
 	

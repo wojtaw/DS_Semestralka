@@ -9,6 +9,8 @@ import org.hibernate.Transaction;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +37,19 @@ public class Main {
 
 	}
 	
+
+	private static void enterInDb() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		
+		Speakers speaker = new Speakers("Lojza");
+		
+		
+		session.save(speaker);
+		session.getTransaction().commit();
+		
+	}
+
 
 	private static void listPresentations() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
