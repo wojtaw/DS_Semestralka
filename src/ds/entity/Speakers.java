@@ -19,12 +19,20 @@ public class Speakers implements java.io.Serializable {
 	private long speakerId;
 	private String speakerName;
 	private long user_id;
-	@ManyToMany(mappedBy="speakers")
-	public Set<Presentations> presentations = new HashSet<Presentations>();
+	@ManyToMany(mappedBy="speakersList")
+	private Set<Presentations> presentations = new HashSet<Presentations>();
 	
 	public Speakers(){
 		
 	}
+	
+	public void setPresentations(Set<Presentations> presentations) {
+        this.presentations = presentations;
+    }
+
+    public Set<Presentations> getPresentations() {
+        return this.presentations;
+    }
 	
 	public Speakers(String speakerName){
 		this.speakerName = speakerName;

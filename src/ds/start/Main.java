@@ -26,7 +26,7 @@ public class Main {
 	public static void main(String[] args) {
 		//enterInDb();
 		listSpeakers();
-		listPresentations();
+		//listPresentations();
 		/*
 		try {
 			connectToDbTest();
@@ -48,8 +48,8 @@ public class Main {
 		speakers.add(new Speakers("My new speaker array 2"));
 		
 		
-		session.save(new Speakers("My new speaker array 1"));
-		session.save(new Speakers("My new speaker array 2"));
+		session.save(new Speakers("My new speaker array 4"));
+		session.save(new Speakers("My new speaker array 5"));
 		session.getTransaction().commit();
 	}
 
@@ -65,7 +65,7 @@ public class Main {
 			
 			for (Iterator iterator = presentation.getSpeakers().iterator(); iterator.hasNext();) {
 				Speakers tmpSpeaker = (Speakers) iterator.next();
-				System.out.println("PREDNASEL NA: "+tmpSpeaker.getSpeakerName());
+				System.out.println("Mluvili na ni: "+tmpSpeaker.getSpeakerName());
 			}			
 		}	
 		
@@ -81,10 +81,10 @@ public class Main {
 		List<Speakers> speakers = session.createQuery("from Speakers").list();
 
 		for (Speakers speaker : speakers){
-			if(!(speaker.presentations == null))
+				
 			System.out.println(speaker.getSpeakerName() +" | "+ speaker.getSpeakerId() + " | " +
-					speaker.presentations.toString());
-			for (Iterator iterator = speaker.presentations.iterator(); iterator.hasNext();) {
+					speaker.getPresentations().toString());
+			for (Iterator iterator = speaker.getPresentations().iterator(); iterator.hasNext();) {
 				Presentations tmpPresentation = (Presentations) iterator.next();
 				System.out.println("PREDNASEL NA: "+tmpPresentation.getPresentationTitle());
 			}
