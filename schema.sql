@@ -54,6 +54,8 @@ CREATE TABLE presentations (
 	video BOOLEAN NOT NULL,
 	folder_id INTEGER NOT NULL REFERENCES folders (id)
 		ON DELETE RESTRICT ON UPDATE CASCADE);
+CREATE INDEX presentations_english_fulltext_idx ON presentations USING
+	gin(to_tsvector('english', title || ' ' || description));
 
 CREATE TABLE subscriptions (
 	id SERIAL PRIMARY KEY,
