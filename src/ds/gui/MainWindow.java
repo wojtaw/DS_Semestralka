@@ -36,8 +36,8 @@ public class MainWindow extends JFrame{
 	
 	private void initComponents() {
 		//Init presentation table
-	
-		
+		Object[][] initData = {{"test","test"},{"test2","test2"}};
+		presentationTable = new JTable(initData,columnNames);
 		
 		//Add all components
 		presentationPanel.add(presentationTable);
