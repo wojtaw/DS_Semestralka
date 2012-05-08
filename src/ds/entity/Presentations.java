@@ -46,7 +46,7 @@ public class Presentations implements java.io.Serializable {
 		this.presentationId = presentationId;
 	}
 	
-	@Column(name = "presentationTitle")
+	@Column(name = "title")
 	public String getPresentationTitle() {
 		return this.presentationTitle;
 	}	

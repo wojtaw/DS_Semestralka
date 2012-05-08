@@ -10,8 +10,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import ds.entity.Presentations;
 import ds.entity.Speakers;
 import ds.util.HibernateUtil;
 
@@ -19,7 +21,9 @@ import ds.util.HibernateUtil;
 public class Main {
 	
 	public static void main(String[] args) {
-		initHibernate();
+		enterInDb();
+		//initHibernate();
+		//listPresentations();
 		/*
 		try {
 			connectToDbTest();
@@ -30,23 +34,44 @@ public class Main {
 		*/
 
 	}
+	
+
+	private static void listPresentations() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		
+		List<Presentations> presentations = session.createQuery("from Presentations").list();
+		for (Presentations presentation : presentations){
+			System.out.println(presentation.getPresentationTitle());
+		}	
+		
+		session.getTransaction().commit();		
+		
+	}
+
 
 	private static void initHibernate() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-
-
-		Set<Speakers> speakers = new HashSet<Speakers>();
 		
-		speakers.add(new Speakers("Lojza"));
-		speakers.add(new Speakers("Keda"));
-		System.out.println("TISKNU SPEAKERY"+speakers.toString());
+		List<Speakers> speakers = session.createQuery("from Speakers").list();
+
+		for (Speakers speaker : speakers){
+			System.out.println(speaker.getSpeakerName() +" | "+ speaker.getSpeakerId());
+		}	
+
+		//Set<Speakers> speakers = new HashSet<Speakers>();
 		
-		session.save(speakers);
+		//speakers.add(new Speakers("Lojza"));
+		//speakers.add(new Speakers("Keda"));
+		
+		//session.save(speakers);
 		session.getTransaction().commit();
 			
 		
 	}
+	
+	
 
 	private static void connectToDbTest() throws Exception {
 		Class.forName("org.postgresql.Driver");
