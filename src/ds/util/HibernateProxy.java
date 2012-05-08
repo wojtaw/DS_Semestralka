@@ -9,20 +9,29 @@ import ds.entity.Presentations;
 import ds.entity.Speakers;
 
 public class HibernateProxy {
+	private Session session;
+	private List<Presentations> presentations;
 	
 	
 	public HibernateProxy(){
 		
 	}
 	
+	public void turnOnSession(){
+		session = HibernateUtil.getSessionFactory().openSession();
+	}
+	
 	public List<Presentations> retrievePresentationData(){
-		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		
-		List<Presentations> presentations = session.createQuery("from Presentations").list();
+		presentations = session.createQuery("from Presentations").list();
 		session.getTransaction().commit();				
 		return presentations;
 	}
+	
+	public void updatePresentation(){
+		
+	}
+	
 	
 	
 

@@ -1,9 +1,13 @@
 package ds.gui;
 
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import ds.controllers.ControllerGUI;
@@ -11,13 +15,13 @@ import ds.entity.Presentations;
 
 public class PresentationDetailsWindow extends JFrame{
 	private ControllerGUI controllerGUI;
-	private JTextField title = new JTextField();
+	private JLabel title = new JLabel("Title");
 	private JTextField titleEdit;
-	private JTextField description = new JTextField();
+	private JLabel description = new JLabel("Description");
 	private JTextField descriptionEdit;
 	private Presentations selectedPresentation;
 	private JButton saveDetails;
-	private GridLayout myGrid = new GridLayout(5,2);
+	private GridLayout myGrid = new GridLayout(0,2);
 
 	public PresentationDetailsWindow(ControllerGUI controllerGUI, Presentations selectedPresentation) {
 		this.selectedPresentation = selectedPresentation;
@@ -32,6 +36,11 @@ public class PresentationDetailsWindow extends JFrame{
 		descriptionEdit = new JTextField(""+selectedPresentation.getPresentationId());
 		descriptionEdit.setEditable(true);
 		saveDetails = new JButton("Save details");
+		saveDetails.addMouseListener(new MouseAdapter(){
+		     public void mouseClicked(MouseEvent e){
+					controllerGUI.savePresentationDetails(titleEdit.getText(),description.getText());
+		         }
+		     } );
 		
 		this.add(title);
 		this.add(titleEdit);

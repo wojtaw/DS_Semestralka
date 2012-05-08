@@ -44,4 +44,10 @@ public class ControllerGUI {
 		
 	}
 
+
+	public void savePresentationDetails(String text, String text2) {
+		appDriver
+		
+	}
+
 }
