@@ -3,6 +3,10 @@ package ds.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.EventListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,8 +20,7 @@ import ds.controllers.ControllerGUI;
 public class MainWindow extends JFrame{
 	private ControllerGUI controllerGUI;
 	private BorderLayout windowLayout = new BorderLayout();	
-	private String[] presentationComlumnNames = {"Presentation name",
-    "Presentation description"};
+	private TableListener tableListeners;
 	
 	//Components
 	private JPanel presentationPanel = new JPanel();
@@ -28,6 +31,12 @@ public class MainWindow extends JFrame{
 		this.controllerGUI = controllerGUI;
 		initWindow();
 		initComponents();
+		initListeners();
+	}
+
+	private void initListeners() {
+		tableListeners = new TableListener(controllerGUI);
+		
 	}
 
 	private void initWindow() {
@@ -46,11 +55,23 @@ public class MainWindow extends JFrame{
 	public boolean initDataComponents(Object[][] presentationTableData){
 		if(presentationTableData == null) return false;
 		//Init presentation table
-		presentationTable = new JTable(presentationTableData,presentationComlumnNames);
+		presentationTable = new JTable();
 		DataTableModel myModel = new DataTableModel();
 		myModel.swapData(presentationTableData);
 		
 		presentationTable.setModel(myModel);
+		
+		presentationTable.getSelectionModel().addListSelectionListener(tableListeners);
+		presentationTable.getColumnModel().getSelectionModel().addListSelectionListener(tableListeners);
+		presentationTable.addMouseListener(new MouseAdapter(){
+		     public void mouseClicked(MouseEvent e){
+		         if (e.getClickCount() == 2){
+		            System.out.println(" double click" );
+		            }
+		         JTable target = (JTable)e.getSource();
+		         controllerGUI.showPresentationDetails(target.getSelectedRow());
+		         }
+		        } );
 		JTableHeader presentationHeader = presentationTable.getTableHeader();
 		presentationHeader.setBackground(Color.yellow);		
 		presentationTable.setPreferredScrollableViewportSize(new Dimension(300, 450));
@@ -65,8 +86,6 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void redrawPresentationTable(Object[][] data){
-		presentationTable = new JTable(data, presentationComlumnNames);
-		presentationTable.updateUI();
 		validateGUI();
 	}
 	

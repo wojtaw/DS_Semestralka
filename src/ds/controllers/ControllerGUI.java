@@ -31,4 +31,10 @@ public class ControllerGUI {
 		mainWindow.initDataComponents(presentationData);
 	}
 
+
+	public void showPresentationDetails(int selectedRow) {
+		System.out.println();
+		
+	}
+
 }
