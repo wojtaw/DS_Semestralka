@@ -17,7 +17,7 @@ public class PresentationDetailsWindow extends JFrame{
 	private JTextField descriptionEdit;
 	private Presentations selectedPresentation;
 	private JButton saveDetails;
-	private GridLayout myGrid = new GridLayout(0,2);
+	private GridLayout myGrid = new GridLayout(5,2);
 
 	public PresentationDetailsWindow(ControllerGUI controllerGUI, Presentations selectedPresentation) {
 		this.selectedPresentation = selectedPresentation;
@@ -27,10 +27,10 @@ public class PresentationDetailsWindow extends JFrame{
 	}
 	
 	private void initComponents() {
-		title = new JTextField("title is: "+selectedPresentation.getPresentationTitle());
-		title.setEditable(true);
-		description = new JTextField(""+selectedPresentation.getPresentationId());
-		description.setEditable(true);
+		titleEdit = new JTextField("title is: "+selectedPresentation.getPresentationTitle());
+		titleEdit.setEditable(true);
+		descriptionEdit = new JTextField(""+selectedPresentation.getPresentationId());
+		descriptionEdit.setEditable(true);
 		saveDetails = new JButton("Save details");
 		
 		this.add(title);
