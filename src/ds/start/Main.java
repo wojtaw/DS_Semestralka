@@ -83,8 +83,8 @@ public class Main {
 		for (Speakers speaker : speakers){
 				
 			System.out.println(speaker.getSpeakerName() +" | "+ speaker.getSpeakerId() + " | " +
-					speaker.presentations.toString());
-			for (Iterator iterator = speaker.presentations.iterator(); iterator.hasNext();) {
+					speaker.getPresentations().toString());
+			for (Iterator iterator = speaker.getPresentations().iterator(); iterator.hasNext();) {
 				Presentations tmpPresentation = (Presentations) iterator.next();
 				System.out.println("PREDNASEL NA: "+tmpPresentation.getPresentationTitle());
 			}

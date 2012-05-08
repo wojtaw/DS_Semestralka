@@ -59,8 +59,8 @@ public class Presentations implements java.io.Serializable {
 		this.presentationTitle = presentationTitle;
 	}
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "presentations_speakers", joinColumns = { @JoinColumn(name = "speaker_id", referencedColumnName="id") }, inverseJoinColumns = { @JoinColumn(name = "presentation_id",referencedColumnName="id") })	
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy="presentations")
+	//@JoinTable(name = "presentations_speakers", joinColumns = { @JoinColumn(name = "speaker_id", referencedColumnName="id") }, inverseJoinColumns = { @JoinColumn(name = "presentation_id",referencedColumnName="id") })	
 	public Set<Speakers> getSpeakers() {
 		return this.speakersList;
 	}
