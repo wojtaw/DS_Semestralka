@@ -7,11 +7,9 @@
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://krizik.felk.cvut.cz:5434/student_db12_10</property>
         <property name="hibernate.connection.username">student_db12_10</property>
-        <property name="connection.password">db12_10</property>
-        <property name="connection.pool_size">1</property>
+        <property name="hibernate.connection.password">db12_10</property>
         <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">create-drop</property>
         <mapping class="ds.entity.Speakers" />
         <mapping class="ds.entity.Presentations" />
     </session-factory>

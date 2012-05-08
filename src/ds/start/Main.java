@@ -33,32 +33,19 @@ public class Main {
 
 	private static void initHibernate() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
+		session.beginTransaction();
 
 
-			Set<Speakers> speakers = new HashSet<Speakers>();
-			System.out.println("TISKNU SPEAKERY"+speakers.toString());
+		Set<Speakers> speakers = new HashSet<Speakers>();
+		
+		speakers.add(new Speakers("Lojza"));
+		speakers.add(new Speakers("Keda"));
+		System.out.println("TISKNU SPEAKERY"+speakers.toString());
+		
+		session.save(speakers);
+		session.getTransaction().commit();
 			
-			/*
-			speakers.add(new Speakers("Lojza"));
-			speakers.add(new Speakers("Keda"));
-			*/
-			/*
-			Student student1 = new Student("Eswar", speakers);
-			Student student2 = new Student("Joe", speakers);
-			session.save(student1);
-			session.save(student2);
-			*/
-
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}		
+		
 	}
 
 	private static void connectToDbTest() throws Exception {

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Speakers")
-public class Speakers {
+public class Speakers implements java.io.Serializable {
 	private long speakerId;
 	private String speakerName;
 	private long user_id;

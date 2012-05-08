@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Presentations")
-public class Presentations {
+public class Presentations implements java.io.Serializable {
 	private long presentationId;
 	private String presentationTitle;
 	private String presentationDescription;
