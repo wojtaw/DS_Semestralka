@@ -22,7 +22,6 @@ public class Speakers implements java.io.Serializable {
 	private long speakerId;
 	private String speakerName;
 	private long user_id;
-	//@ManyToMany(mappedBy="speakersList")
 	private Set<Presentations> presentations = new HashSet<Presentations>();
 	
 	public Speakers(){
@@ -37,7 +36,6 @@ public class Speakers implements java.io.Serializable {
 	@Id
 	@GenericGenerator(name="generator", strategy="increment")
     @GeneratedValue(generator = "generator")
-	//@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id", nullable=false)
 	public long getSpeakerId() {
 		return this.speakerId;

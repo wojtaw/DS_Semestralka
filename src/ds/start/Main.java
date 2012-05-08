@@ -27,14 +27,7 @@ public class Main {
 		//enterInDb();
 		listSpeakers();
 		listPresentations();
-		/*
-		try {
-			connectToDbTest();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
+		AppDriver appDriver = new AppDriver();
 
 	}
 	
