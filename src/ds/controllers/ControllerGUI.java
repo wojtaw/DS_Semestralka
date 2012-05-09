@@ -16,6 +16,7 @@ public class ControllerGUI {
 	private MainWindow mainWindow;
 	private PresentationDetailsWindow presentationDetailsWindow;
 	private List<Presentations> presentationList;
+	private List<Speakers> speakersList;
 	
 
 	public ControllerGUI(AppDriver appDriver) {
@@ -27,8 +28,9 @@ public class ControllerGUI {
 		mainWindow = new MainWindow(this); 
 	}
 	
-	public void initGUIData(List<Presentations> presentationList){
+	public void initGUIData(List<Presentations> presentationList,List<Speakers> speakersList){
 		this.presentationList = presentationList;
+		this.speakersList = speakersList;
 		mainWindow.initDataComponents();
 		refreshPresentationTable();
 	}
@@ -38,8 +40,13 @@ public class ControllerGUI {
 		System.out.println(presentationList.get(selectedRow).getPresentationTitle());
 		Presentations tmpPresentation = presentationList.get(selectedRow);
 		presentationDetailsWindow = new PresentationDetailsWindow(this,tmpPresentation);
-		
 	}
+	
+
+	public void showSpeakeerDetails(int selectedRow) {
+		// TODO Auto-generated method stub
+		
+	}	
 	
 	private void refreshPresentationTable() {
 		//Create and fill data object for presentation table
@@ -49,8 +56,17 @@ public class ControllerGUI {
 			presentationData[i][1] = presentationList.get(i).getPresentationDescription();
 			presentationData[i][2] = presentationList.get(i).getPresentationId();
 		}
-		mainWindow.redrawPresentationTable(presentationData);
-		
+		mainWindow.redrawPresentationTable(presentationData);	
+	}
+	
+	private void refreshSpeakerTable() {
+		//Create and fill data object for presentation table
+		Object[][] speakerData = new Object[presentationList.size()][3];
+		for (int i = 0; i < presentationList.size(); i++) {
+			speakerData[i][0] = speakersList.get(i).getSpeakerName();
+			speakerData[i][1] = speakersList.get(i).getSpeakerId();
+		}
+		mainWindow.redrawPresentationTable(speakerData);	
 	}	
 
 

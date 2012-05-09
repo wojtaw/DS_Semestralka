@@ -24,6 +24,15 @@ public class HibernateProxy {
 		return presentations;
 	}
 	
+	public List<Speakers> retrieveSpeakersData(){
+		//Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		
+		List<Speakers> speakers = session.createQuery("from Speakers").list();
+		session.getTransaction().commit();				
+		return speakers;
+	}	
+	
 	public boolean updatePresentation(Presentations presentationToUpdate){
 		session.beginTransaction();
 		

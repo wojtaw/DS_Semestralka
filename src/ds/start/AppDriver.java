@@ -12,7 +12,7 @@ public class AppDriver {
 		controllerGUI = new ControllerGUI(this);
 		controllerGUI.initMainGUI();
 		hibernateProxy = new HibernateProxy();
-		controllerGUI.initGUIData(hibernateProxy.retrievePresentationData());
+		controllerGUI.initGUIData(hibernateProxy.retrievePresentationData(),hibernateProxy.retrieveSpeakersData());
 	}
 	
 	

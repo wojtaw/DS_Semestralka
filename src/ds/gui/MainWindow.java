@@ -24,7 +24,8 @@ public class MainWindow extends JFrame{
 	private ControllerGUI controllerGUI;
 	private BorderLayout windowLayout = new BorderLayout();	
 	private MainWindowListener mainWindowListener;
-	private PresentationTableModel myModel;
+	private PresentationTableModel presentationModel;
+	private SpeakerTableModel speakerModel;
 	
 	//Components
 	private JPanel presentationPanel = new JPanel();
@@ -101,8 +102,8 @@ public class MainWindow extends JFrame{
 	public boolean initDataComponents(){
 		//Init presentation table
 		presentationTable = new JTable();
-		myModel = new PresentationTableModel();
-		presentationTable.setModel(myModel);
+		presentationModel = new PresentationTableModel();
+		presentationTable.setModel(presentationModel);
 		
 		presentationTable.getSelectionModel().addListSelectionListener(mainWindowListener);
 		presentationTable.getColumnModel().getSelectionModel().addListSelectionListener(mainWindowListener);
@@ -122,10 +123,9 @@ public class MainWindow extends JFrame{
 		presentationPanel.add(presentationScroll);
 		
 
-/*		
 		speakerTable = new JTable();
-		myModel = new DataTableModel();
-		speakerTable.setModel(myModel);
+		speakerModel = new SpeakerTableModel();
+		speakerTable.setModel(speakerModel);
 		
 		speakerTable.getSelectionModel().addListSelectionListener(mainWindowListener);
 		speakerTable.getColumnModel().getSelectionModel().addListSelectionListener(mainWindowListener);
@@ -133,27 +133,26 @@ public class MainWindow extends JFrame{
 		     public void mouseClicked(MouseEvent e){
 		         if (e.getClickCount() == 2){
 					JTable target = (JTable)e.getSource();
-					controllerGUI.showPresentationDetails(target.getSelectedRow());
+					controllerGUI.showSpeakeerDetails(target.getSelectedRow());
 		         }
 		         }
 		        } );
-		JTableHeader presentationHeader = presentationTable.getTableHeader();
-		presentationHeader.setBackground(Color.yellow);		
+		JTableHeader speakerHeader = speakerTable.getTableHeader();
+		speakerHeader.setBackground(Color.yellow);		
 		speakerTable.setPreferredScrollableViewportSize(new Dimension(300, 450));
 		speakerTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		JScrollPane speakerScroll = new JScrollPane(presentationTable);
 		speakerTable.add(presentationScroll);
-		
-		*/
+
 		validateGUI();
 		return true;
 	}
 	
 	public void redrawPresentationTable(Object[][] data){
 		ApplicationOutput.printLog("Swaping data");
-		myModel.swapData(data);
+		presentationModel.swapData(data);
 		
-		presentationTable.setModel(myModel);
+		presentationTable.setModel(presentationModel);
 		presentationTable.updateUI();
 		validateGUI();
 	}
