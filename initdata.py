@@ -113,6 +113,10 @@ tag_presentation = connection.prepare("INSERT INTO tags_presentations (tag_id, p
 def randomTP(tags, presentations):
 	addRow(tag_presentation, (random.choice(tags), random.choice(presentations)))
 
+presentations_speakers = connection.prepare("INSERT INTO presentations_speakers (presentation_id, speaker_id) VALUES ($1, $2)")
+def randomPS(spkrs, prsnttns):
+	addRow(presentations_speakers, (random.choice(prsnttns), random.choice(spkrs)))
+
 # počty jednotlivých záznamů v db
 channelsN = 48
 speakersN = 48
@@ -122,6 +126,7 @@ subscriptionsN = 25
 statisticsN = channelsN*presentationsN//5
 tagsN = 64
 tags_presentationsN = presentationsN*2
+presentations_speakersN = speakersN*2
 
 # uložení záznamů do db
 if __name__ == "__main__":
@@ -179,4 +184,7 @@ if __name__ == "__main__":
 	print("Adding tags_presentations")
 	for x in range(tags_presentationsN):
 		randomTP(tagids, presentationids)
-
+	print("Adding presentations_speakers")
+	speakerids = getIDs("speakers")
+	for x in range(presentations_speakersN):
+		randomPS(speakerids, presentationids)
