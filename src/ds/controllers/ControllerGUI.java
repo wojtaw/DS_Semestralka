@@ -178,11 +178,14 @@ public class ControllerGUI {
 
 
 	public void highlightSpeakers(int selectedRow) {
+		mainWindow.highlightRowsInSpeakers(null);
 		ApplicationOutput.printLog("Highlighting speakers");
 		Presentations tmpPresentation = presentationList.get(selectedRow);
+		ApplicationOutput.printLog("Presentation "+tmpPresentation.getPresentationTitle());
 		for (Iterator iterator = tmpPresentation.getSpeakers().iterator(); iterator.hasNext();) {
 			Speakers tmpSpeaker = (Speakers) iterator.next();
 			ApplicationOutput.printLog("MUSE BE HIGHLIGHTED "+speakersList.indexOf(tmpSpeaker));
 		}			
 	}
+
 }

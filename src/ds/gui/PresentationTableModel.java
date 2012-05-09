@@ -1,5 +1,6 @@
 package ds.gui;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +11,11 @@ public class PresentationTableModel extends AbstractTableModel{
 	
 	private List<String> columnNames = new ArrayList();
     private Object[][] data = {{"no data","no data","no data"}};
+    List<Color> rowColours = Arrays.asList(
+            Color.RED,
+            Color.GREEN,
+            Color.CYAN
+        );    
 
     public PresentationTableModel(){
         columnNames.add("Presentation title");
@@ -42,6 +48,15 @@ public class PresentationTableModel extends AbstractTableModel{
     public boolean isCellEditable(int row, int column) {
        //all cells false
        return false;
+    }	
+	
+	public void setRowColour(int row, Color c) {
+        rowColours.set(row, c);
+        fireTableRowsUpdated(row, row);
+    }	
+	
+	public Color getRowColour(int row) {
+        return rowColours.get(row);
     }	
 	
 	
