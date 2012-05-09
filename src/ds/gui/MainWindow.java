@@ -28,14 +28,14 @@ public class MainWindow extends JFrame{
 	private SpeakerTableModel speakerModel;
 	
 	//Components
-	private JPanel presentationPanel = new JPanel();
+	public JPanel presentationPanel = new JPanel();
 	private BoxLayout presentationLayout = new BoxLayout(presentationPanel, BoxLayout.PAGE_AXIS);
 	private JTable presentationTable;
 	private MyButton presentationNew;
 	private MyButton presentationEdit;
 	private MyButton presentationRemove;
 	
-	private JPanel speakerPanel = new JPanel();
+	public JPanel speakerPanel = new JPanel();
 	private BoxLayout speakerLayout = new BoxLayout(speakerPanel, BoxLayout.PAGE_AXIS);
 	private JTable speakerTable;
 	private MyButton speakerNew;

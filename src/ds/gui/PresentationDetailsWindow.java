@@ -76,6 +76,8 @@ public class PresentationDetailsWindow extends JFrame{
 		this.setSize(400, 200);
 		this.setVisible(true);	
 		this.setLayout(myGrid);
+		this.setAlwaysOnTop(true);		
+		this.setLocationRelativeTo(controllerGUI.getPresentationPanel());		
 	}	
 
 }

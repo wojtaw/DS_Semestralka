@@ -52,7 +52,6 @@ public class SpeakerDetailsWindow extends JFrame{
 		this.add(saveDetails);
 		this.pack();
 		this.validate();
-		this.setAlwaysOnTop( true );
 	}
 
 	private String getPresentationsList() {
@@ -72,6 +71,8 @@ public class SpeakerDetailsWindow extends JFrame{
 		this.setSize(400, 200);
 		this.setVisible(true);	
 		this.setLayout(myGrid);
+		this.setAlwaysOnTop(true);	
+		this.setLocationRelativeTo(controllerGUI.getSpeakerPanel());
 	}		
 
 }

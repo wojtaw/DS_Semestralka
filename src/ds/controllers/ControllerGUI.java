@@ -1,5 +1,6 @@
 package ds.controllers;
 
+import java.awt.Component;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -132,5 +133,14 @@ public class ControllerGUI {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	public Component getPresentationPanel() {
+		return mainWindow.presentationPanel;
+	}
+	
+	public Component getSpeakerPanel() {
+		return mainWindow.speakerPanel;
+	}	
 
 }
