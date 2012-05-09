@@ -57,6 +57,11 @@ CREATE TABLE presentations (
 CREATE INDEX presentations_english_fulltext_idx ON presentations USING
 	gin(to_tsvector('english', title || ' ' || description));
 
+CREATE TABLE presentations_speakers (
+	presentation_id integer NOT NULL REFERENCES presentations(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	speaker_id integer NOT NULL REFERENCES speakers (id) ON DELETE CASCADE ON UPDATE CASCADE
+)
+
 CREATE TABLE subscriptions (
 	id SERIAL PRIMARY KEY,
 	channel_id INTEGER NOT NULL REFERENCES channels (id)
