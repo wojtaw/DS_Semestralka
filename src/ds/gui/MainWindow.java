@@ -141,21 +141,28 @@ public class MainWindow extends JFrame{
 		speakerHeader.setBackground(Color.yellow);		
 		speakerTable.setPreferredScrollableViewportSize(new Dimension(300, 450));
 		speakerTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		JScrollPane speakerScroll = new JScrollPane(presentationTable);
-		speakerTable.add(presentationScroll);
+		JScrollPane speakerScroll = new JScrollPane(speakerTable);
+		speakerPanel.add(speakerScroll);
 
 		validateGUI();
 		return true;
 	}
 	
 	public void redrawPresentationTable(Object[][] data){
-		ApplicationOutput.printLog("Swaping data");
+		ApplicationOutput.printLog("Swaping data in presentations");
 		presentationModel.swapData(data);
-		
 		presentationTable.setModel(presentationModel);
 		presentationTable.updateUI();
 		validateGUI();
 	}
+	
+	public void redrawSpeakerTable(Object[][] data){
+		ApplicationOutput.printLog("Swaping data in speakers");
+		speakerModel.swapData(data);
+		speakerTable.setModel(speakerModel);
+		speakerTable.updateUI();
+		validateGUI();
+	}	
 	
 	public void validateGUI(){
 		this.validate();

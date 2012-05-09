@@ -33,6 +33,7 @@ public class ControllerGUI {
 		this.speakersList = speakersList;
 		mainWindow.initDataComponents();
 		refreshPresentationTable();
+		refreshSpeakerTable();
 	}
 
 
@@ -61,12 +62,12 @@ public class ControllerGUI {
 	
 	private void refreshSpeakerTable() {
 		//Create and fill data object for presentation table
-		Object[][] speakerData = new Object[presentationList.size()][3];
-		for (int i = 0; i < presentationList.size(); i++) {
+		Object[][] speakerData = new Object[speakersList.size()][2];
+		for (int i = 0; i < speakersList.size(); i++) {
 			speakerData[i][0] = speakersList.get(i).getSpeakerName();
 			speakerData[i][1] = speakersList.get(i).getSpeakerId();
 		}
-		mainWindow.redrawPresentationTable(speakerData);	
+		mainWindow.redrawSpeakerTable(speakerData);	
 	}	
 
 
@@ -81,7 +82,7 @@ public class ControllerGUI {
 				refreshPresentationTable();
 			}		
 		}
-		
+
 	}
 
 
