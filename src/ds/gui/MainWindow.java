@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.EventListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,10 +28,18 @@ public class MainWindow extends JFrame{
 	
 	//Components
 	private JPanel presentationPanel = new JPanel();
+	private BoxLayout presentationLayout = new BoxLayout(presentationPanel, BoxLayout.PAGE_AXIS);
 	private JTable presentationTable;
 	private MyButton presentationNew;
 	private MyButton presentationEdit;
 	private MyButton presentationRemove;
+	
+	private JPanel speakerPanel = new JPanel();
+	private BoxLayout speakerLayout = new BoxLayout(speakerPanel, BoxLayout.PAGE_AXIS);
+	private JTable speakerTable;
+	private MyButton speakerNew;
+	private MyButton speakerEdit;
+	private MyButton speakerRemove;	
 	
 	
 	public MainWindow(ControllerGUI controllerGUI) {
@@ -63,11 +72,30 @@ public class MainWindow extends JFrame{
 		presentationEdit.addMouseListener(mainWindowListener);
 		presentationRemove.addMouseListener(mainWindowListener);
 		
+		presentationPanel.setLayout(presentationLayout);
 		
 		presentationPanel.add(presentationNew);
 		presentationPanel.add(presentationEdit);
 		presentationPanel.add(presentationRemove);
-		this.add(presentationPanel,BorderLayout.CENTER);
+		
+		speakerNew = new MyButton("Add speaker", ButtonsIdentification.SPEAKER_NEW);
+		speakerEdit = new MyButton("Edit selected speaker", ButtonsIdentification.SPEAKER_EDIT);
+		speakerRemove = new MyButton("Remove selected speaker", ButtonsIdentification.SPEAKER_DELETE);
+		
+		speakerNew.addMouseListener(mainWindowListener);
+		speakerEdit.addMouseListener(mainWindowListener);
+		speakerRemove.addMouseListener(mainWindowListener);
+		
+		speakerPanel.setLayout(speakerLayout);
+		
+		speakerPanel.add(speakerNew);
+		speakerPanel.add(speakerEdit);
+		speakerPanel.add(speakerRemove);		
+		
+		
+		this.add(presentationPanel,BorderLayout.LINE_END);
+		this.add(speakerPanel,BorderLayout.LINE_START);
+		
 	}
 	
 	public boolean initDataComponents(){
