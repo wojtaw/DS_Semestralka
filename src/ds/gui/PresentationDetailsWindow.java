@@ -31,7 +31,7 @@ public class PresentationDetailsWindow extends JFrame{
 	}
 	
 	private void initComponents() {
-		titleEdit = new JTextField("title is: "+selectedPresentation.getPresentationTitle());
+		titleEdit = new JTextField(selectedPresentation.getPresentationTitle());
 		titleEdit.setEditable(true);
 		descriptionEdit = new JTextField(""+selectedPresentation.getPresentationDescription());
 		descriptionEdit.setEditable(true);

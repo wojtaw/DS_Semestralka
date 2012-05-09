@@ -42,12 +42,13 @@ public class ControllerGUI {
 	
 	private void refreshPresentationTable() {
 		//Create and fill data object for presentation table
-		Object[][] presentationData = new Object[presentationList.size()][2];
+		Object[][] presentationData = new Object[presentationList.size()][3];
 		for (int i = 0; i < presentationList.size(); i++) {
 			presentationData[i][0] = presentationList.get(i).getPresentationTitle();
 			presentationData[i][1] = presentationList.get(i).getPresentationDescription();
-			//presentationData[i][2] = presentationList.get(i).getPresentationId();
+			presentationData[i][2] = presentationList.get(i).getPresentationId();
 		}
+		mainWindow.redrawPresentationTable(presentationData);
 		
 	}	
 

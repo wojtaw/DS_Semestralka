@@ -16,6 +16,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 import ds.controllers.ControllerGUI;
+import ds.util.ApplicationOutput;
 
 public class MainWindow extends JFrame{
 	private ControllerGUI controllerGUI;
@@ -83,6 +84,7 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void redrawPresentationTable(Object[][] data){
+		ApplicationOutput.printLog("Swaping data");
 		myModel.swapData(data);
 		
 		presentationTable.setModel(myModel);
