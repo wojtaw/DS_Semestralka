@@ -10,7 +10,7 @@ import javax.swing.event.ListSelectionListener;
 import ds.controllers.ControllerGUI;
 import ds.util.ApplicationOutput;
 
-public class MainWindowListener implements ActionListener, MouseListener, ListSelectionListener{
+public class MainWindowListener implements ActionListener, MouseListener{
 	private ControllerGUI controllerGUI;
 	
 	public MainWindowListener(ControllerGUI controllerGUI){
@@ -65,12 +65,6 @@ public class MainWindowListener implements ActionListener, MouseListener, ListSe
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

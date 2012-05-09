@@ -45,5 +45,10 @@ public class PresentationTableModel extends AbstractTableModel{
     }	
 	
 	
+	public String toString(){
+		return "PRESENTATIONS";
+	}
+	
+	
 
 }

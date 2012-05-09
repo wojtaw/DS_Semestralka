@@ -24,6 +24,7 @@ public class MainWindow extends JFrame{
 	private ControllerGUI controllerGUI;
 	private BorderLayout windowLayout = new BorderLayout();	
 	private MainWindowListener mainWindowListener;
+	private PresentationTableListener presentationTableListener;
 	private PresentationTableModel presentationModel;
 	private SpeakerTableModel speakerModel;
 	
@@ -52,6 +53,7 @@ public class MainWindow extends JFrame{
 
 	private void initListeners() {
 		mainWindowListener = new MainWindowListener(controllerGUI);
+		presentationTableListener = new PresentationTableListener(controllerGUI);
 		
 	}
 
@@ -105,8 +107,8 @@ public class MainWindow extends JFrame{
 		presentationModel = new PresentationTableModel();
 		presentationTable.setModel(presentationModel);
 		
-		presentationTable.getSelectionModel().addListSelectionListener(mainWindowListener);
-		presentationTable.getColumnModel().getSelectionModel().addListSelectionListener(mainWindowListener);
+		presentationTable.getSelectionModel().addListSelectionListener(presentationTableListener);
+		presentationTable.getColumnModel().getSelectionModel().addListSelectionListener(presentationTableListener);
 		presentationTable.addMouseListener(new MouseAdapter(){
 		     public void mouseClicked(MouseEvent e){
 		         if (e.getClickCount() == 2){
@@ -127,8 +129,8 @@ public class MainWindow extends JFrame{
 		speakerModel = new SpeakerTableModel();
 		speakerTable.setModel(speakerModel);
 		
-		speakerTable.getSelectionModel().addListSelectionListener(mainWindowListener);
-		speakerTable.getColumnModel().getSelectionModel().addListSelectionListener(mainWindowListener);
+		//speakerTable.getSelectionModel().addListSelectionListener(mainWindowListener);
+		//speakerTable.getColumnModel().getSelectionModel().addListSelectionListener(mainWindowListener);
 		speakerTable.addMouseListener(new MouseAdapter(){
 		     public void mouseClicked(MouseEvent e){
 		         if (e.getClickCount() == 2){
