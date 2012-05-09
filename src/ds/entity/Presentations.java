@@ -61,7 +61,7 @@ public class Presentations implements java.io.Serializable {
 	
 	@Column(name = "description")
 	public String getPresentationDescription() {
-		return this.presentationTitle;
+		return this.presentationDescription;
 	}	
 	
 	public void setPresentationDescription(String presentationDescription) {
