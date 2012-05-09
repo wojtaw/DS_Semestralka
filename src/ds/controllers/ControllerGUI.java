@@ -70,8 +70,15 @@ public class ControllerGUI {
 
 
 	public void clickedPresentationDelete() {
-		// TODO Auto-generated method stub
-		
+		//Check if there is any row selected in table
+		if(mainWindow.getSelectedRowPresentation().length <= 0) ApplicationOutput.printLog("YOU DID NOT SELECT ANY PRESENTATION");
+		else if(mainWindow.getSelectedRowPresentation().length > 1) ApplicationOutput.printLog("Please select only one presentation to edit");
+		else {
+			int tmpSelectedRow = mainWindow.getSelectedRowPresentation()[0];
+			Presentations tmpPresentation = presentationList.remove(tmpSelectedRow);			
+			appDriver.hibernateProxy.deletePresentation(tmpPresentation);	
+			refreshPresentationTable();			
+		}
 	}
 
 
@@ -93,15 +100,7 @@ public class ControllerGUI {
 
 
 	public void clickedSpeakerDelete() {
-		//Check if there is any row selected in table
-		if(mainWindow.getSelectedRowPresentation().length <= 0) ApplicationOutput.printLog("YOU DID NOT SELECT ANY PRESENTATION");
-		else if(mainWindow.getSelectedRowPresentation().length > 1) ApplicationOutput.printLog("Please select only one presentation to edit");
-		else {
-			int tmpSelectedRow = mainWindow.getSelectedRowPresentation()[0];
-			Presentations tmpPresentation = presentationList.get(tmpSelectedRow);			
-			appDriver.hibernateProxy.deletePresentation(tmpPresentation);	
-			refreshPresentationTable();			
-		}
+
 	}
 
 

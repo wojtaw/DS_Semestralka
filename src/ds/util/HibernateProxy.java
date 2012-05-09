@@ -32,8 +32,13 @@ public class HibernateProxy {
 		return true;
 	}
 
-	public void deletePresentation(Presentations presentation) {
-		// TODO Auto-generated method stub
+	public boolean deletePresentation(Presentations presentation) {
+		ApplicationOutput.printLog("Attempting to delete presentation");
+		
+		session.beginTransaction();
+		session.delete(presentation);
+		session.getTransaction().commit();			
+		return true;		
 		
 	}
 	
