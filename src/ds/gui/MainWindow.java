@@ -24,7 +24,7 @@ public class MainWindow extends JFrame{
 	private ControllerGUI controllerGUI;
 	private BorderLayout windowLayout = new BorderLayout();	
 	private MainWindowListener mainWindowListener;
-	private DataTableModel myModel;
+	private PresentationTableModel myModel;
 	
 	//Components
 	private JPanel presentationPanel = new JPanel();
@@ -101,7 +101,7 @@ public class MainWindow extends JFrame{
 	public boolean initDataComponents(){
 		//Init presentation table
 		presentationTable = new JTable();
-		myModel = new DataTableModel();
+		myModel = new PresentationTableModel();
 		presentationTable.setModel(myModel);
 		
 		presentationTable.getSelectionModel().addListSelectionListener(mainWindowListener);
@@ -121,8 +121,30 @@ public class MainWindow extends JFrame{
 		JScrollPane presentationScroll = new JScrollPane(presentationTable);
 		presentationPanel.add(presentationScroll);
 		
-		//Add all components
-		//presentationPanel.add(presentationTable);
+
+/*		
+		speakerTable = new JTable();
+		myModel = new DataTableModel();
+		speakerTable.setModel(myModel);
+		
+		speakerTable.getSelectionModel().addListSelectionListener(mainWindowListener);
+		speakerTable.getColumnModel().getSelectionModel().addListSelectionListener(mainWindowListener);
+		speakerTable.addMouseListener(new MouseAdapter(){
+		     public void mouseClicked(MouseEvent e){
+		         if (e.getClickCount() == 2){
+					JTable target = (JTable)e.getSource();
+					controllerGUI.showPresentationDetails(target.getSelectedRow());
+		         }
+		         }
+		        } );
+		JTableHeader presentationHeader = presentationTable.getTableHeader();
+		presentationHeader.setBackground(Color.yellow);		
+		speakerTable.setPreferredScrollableViewportSize(new Dimension(300, 450));
+		speakerTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		JScrollPane speakerScroll = new JScrollPane(presentationTable);
+		speakerTable.add(presentationScroll);
+		
+		*/
 		validateGUI();
 		return true;
 	}

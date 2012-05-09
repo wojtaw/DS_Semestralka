@@ -1,20 +1,18 @@
 package ds.gui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-public class DataTableModel extends AbstractTableModel{
-	
-	private List<String> columnNames = new ArrayList();
-    private Object[][] data = {{"no data","no data","no data"}};
+public class SpeakerTableModel extends AbstractTableModel{
 
-    public DataTableModel(){
-        columnNames.add("Presentation title");
-        columnNames.add("Description");
-        columnNames.add("Pres. ID");
+	private List<String> columnNames = new ArrayList();
+    private Object[][] data = {{"no data","no data"}};
+
+    public SpeakerTableModel(){
+        columnNames.add("Speaker name");
+        columnNames.add("Speaker. ID");
     }	
     public void swapData(Object[][] data){
     	this.data = data;
@@ -43,7 +41,4 @@ public class DataTableModel extends AbstractTableModel{
        //all cells false
        return false;
     }	
-	
-	
-
 }
