@@ -45,8 +45,8 @@ public class MainWindow extends JFrame{
 	public MainWindow(ControllerGUI controllerGUI) {
 		this.controllerGUI = controllerGUI;
 		initWindow();
-		initComponents();
 		initListeners();
+		initComponents();
 	}
 
 	private void initListeners() {
@@ -65,8 +65,8 @@ public class MainWindow extends JFrame{
 	
 	private void initComponents() {
 		presentationNew = new MyButton("New presentation", ButtonsIdentification.PRESENTATION_NEW);
-		presentationEdit = new MyButton("Edit selected presentation", ButtonsIdentification.PRESENTATION_NEW);
-		presentationRemove = new MyButton("Remove selected presentation", ButtonsIdentification.PRESENTATION_NEW);
+		presentationEdit = new MyButton("Edit selected presentation", ButtonsIdentification.PRESENTATION_EDIT);
+		presentationRemove = new MyButton("Remove selected presentation", ButtonsIdentification.PRESENTATION_DELETE);
 		
 		presentationNew.addMouseListener(mainWindowListener);
 		presentationEdit.addMouseListener(mainWindowListener);
@@ -138,6 +138,10 @@ public class MainWindow extends JFrame{
 	
 	public void validateGUI(){
 		this.validate();
+	}
+	
+	public int[] getSelectedRowPresentation(){
+		return presentationTable.getSelectedRows();
 	}
 
 	

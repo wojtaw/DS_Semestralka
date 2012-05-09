@@ -1,5 +1,6 @@
 package ds.controllers;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -65,6 +66,43 @@ public class ControllerGUI {
 				refreshPresentationTable();
 			}		
 		}
+		
+	}
+
+
+	public void clickedPresentationDelete() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void clickedPresentationEdit() {
+		//Check if there is any row selected in table
+		ApplicationOutput.printLog(Arrays.toString(mainWindow.getSelectedRowPresentation()));
+		
+	}
+
+
+	public void clickedPresentationNew() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void clickedSpeakerDelete() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void clickedSpeakerEdit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void clickedSpeakerNew() {
+		// TODO Auto-generated method stub
 		
 	}
 
