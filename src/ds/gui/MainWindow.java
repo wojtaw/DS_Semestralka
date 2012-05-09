@@ -28,7 +28,7 @@ public class MainWindow extends JFrame{
 	//Components
 	private JPanel presentationPanel = new JPanel();
 	private JTable presentationTable;
-	private MyButton presentationSave;
+	private MyButton presentationNew;
 	private MyButton presentationEdit;
 	private MyButton presentationRemove;
 	
@@ -55,9 +55,19 @@ public class MainWindow extends JFrame{
 	
 	
 	private void initComponents() {
-		presentationSave - new MyButton(text, "PRESENTATION_SAVE");
+		presentationNew = new MyButton("New presentation", ButtonsIdentification.PRESENTATION_NEW);
+		presentationEdit = new MyButton("Edit selected presentation", ButtonsIdentification.PRESENTATION_NEW);
+		presentationRemove = new MyButton("Remove selected presentation", ButtonsIdentification.PRESENTATION_NEW);
+		
+		presentationNew.addMouseListener(mainWindowListener);
+		presentationEdit.addMouseListener(mainWindowListener);
+		presentationRemove.addMouseListener(mainWindowListener);
+		
+		
+		presentationPanel.add(presentationNew);
+		presentationPanel.add(presentationEdit);
+		presentationPanel.add(presentationRemove);
 		this.add(presentationPanel,BorderLayout.CENTER);
-		presentationPanel
 	}
 	
 	public boolean initDataComponents(){

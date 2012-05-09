@@ -3,9 +3,9 @@ package ds.gui;
 import javax.swing.JButton;
 
 public class MyButton extends JButton{
-	private String identificator = "UNKNOWN";
+	private ButtonsIdentification identificator;
 	
-    public MyButton(String text,String identificator) {
+    public MyButton(String text,ButtonsIdentification identificator) {
     	this.identificator = identificator;
         this.setText(text);
         //this.setFont(new Font("Dialog", Font.BOLD, 15));
@@ -14,6 +14,6 @@ public class MyButton extends JButton{
     @Override
     public String toString()
     {
-        return this.identificator;
+        return this.identificator.toString();
     }
 }
