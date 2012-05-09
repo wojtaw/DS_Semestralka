@@ -60,7 +60,7 @@ CREATE INDEX presentations_english_fulltext_idx ON presentations USING
 CREATE TABLE presentations_speakers (
 	presentation_id integer NOT NULL REFERENCES presentations(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	speaker_id integer NOT NULL REFERENCES speakers (id) ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE subscriptions (
 	id SERIAL PRIMARY KEY,
