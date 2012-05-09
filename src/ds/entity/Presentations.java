@@ -59,6 +59,15 @@ public class Presentations implements java.io.Serializable {
 		this.presentationTitle = presentationTitle;
 	}
 	
+	@Column(name = "description")
+	public String getPresentationDescription() {
+		return this.presentationTitle;
+	}	
+	
+	public void setPresentationDescription(String presentationDescription) {
+		this.presentationDescription = presentationDescription;
+	}	
+	
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy="presentations")	
 	public Set<Speakers> getSpeakers() {
 		return this.speakersList;

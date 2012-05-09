@@ -31,7 +31,8 @@ public class ControllerGUI {
 		Object[][] presentationData = new Object[presentationList.size()][2];
 		for (int i = 0; i < presentationList.size(); i++) {
 			presentationData[i][0] = presentationList.get(i).getPresentationTitle();
-			presentationData[i][1] = presentationList.get(i).getPresentationTitle();			
+			presentationData[i][1] = presentationList.get(i).getPresentationDescription();
+			//presentationData[i][2] = presentationList.get(i).getPresentationId();
 		}		
 		mainWindow.initDataComponents(presentationData);
 	}
@@ -45,8 +46,9 @@ public class ControllerGUI {
 	}
 
 
-	public void savePresentationDetails(String text, String text2) {
-		appDriver
+	public void savePresentationDetails(String title, String description, long id) {
+		Presentations updatedPresentation = new Presentations();
+		appDriver.hibernateProxy.updatePresentation(updatedPresentation, id);
 		
 	}
 

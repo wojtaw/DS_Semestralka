@@ -33,12 +33,12 @@ public class PresentationDetailsWindow extends JFrame{
 	private void initComponents() {
 		titleEdit = new JTextField("title is: "+selectedPresentation.getPresentationTitle());
 		titleEdit.setEditable(true);
-		descriptionEdit = new JTextField(""+selectedPresentation.getPresentationId());
+		descriptionEdit = new JTextField(""+selectedPresentation.getPresentationDescription());
 		descriptionEdit.setEditable(true);
 		saveDetails = new JButton("Save details");
 		saveDetails.addMouseListener(new MouseAdapter(){
 		     public void mouseClicked(MouseEvent e){
-					controllerGUI.savePresentationDetails(titleEdit.getText(),description.getText());
+					controllerGUI.savePresentationDetails(titleEdit.getText(),description.getText(),selectedPresentation.getPresentationId());
 		         }
 		     } );
 		

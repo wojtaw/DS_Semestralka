@@ -4,8 +4,8 @@ import ds.controllers.ControllerGUI;
 import ds.util.HibernateProxy;
 
 public class AppDriver {
-	private ControllerGUI controllerGUI;
-	private HibernateProxy hibernateProxy;
+	public ControllerGUI controllerGUI;
+	public HibernateProxy hibernateProxy;
 
 	
 	public AppDriver(){
@@ -14,5 +14,7 @@ public class AppDriver {
 		hibernateProxy = new HibernateProxy();
 		controllerGUI.initGUIData(hibernateProxy.retrievePresentationData());
 	}
+	
+	
 
 }

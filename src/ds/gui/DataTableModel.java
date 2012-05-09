@@ -9,11 +9,12 @@ import javax.swing.table.AbstractTableModel;
 public class DataTableModel extends AbstractTableModel{
 	
 	private List<String> columnNames = new ArrayList();
-    private Object[][] data = {{"no data","no data"}};
+    private Object[][] data = {{"no data","no data","no data"}};
 
     public DataTableModel(){
         columnNames.add("Presentation title");
         columnNames.add("Description");
+        columnNames.add("Pres. ID");
     }	
     public void swapData(Object[][] data){
     	this.data = data;
