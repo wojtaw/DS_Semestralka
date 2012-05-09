@@ -53,7 +53,6 @@ public class MainWindow extends JFrame{
 
 	private void initListeners() {
 		mainWindowListener = new MainWindowListener(controllerGUI);
-		presentationTableListener = new PresentationTableListener(controllerGUI);
 		
 	}
 
@@ -104,6 +103,9 @@ public class MainWindow extends JFrame{
 	public boolean initDataComponents(){
 		//Init presentation table
 		presentationTable = new JTable();
+		
+		presentationTableListener = new PresentationTableListener(controllerGUI,presentationTable);		
+		
 		presentationModel = new PresentationTableModel();
 		presentationTable.setModel(presentationModel);
 		
@@ -114,7 +116,12 @@ public class MainWindow extends JFrame{
 		         if (e.getClickCount() == 2){
 					JTable target = (JTable)e.getSource();
 					controllerGUI.showPresentationDetails(target.getSelectedRow());
-		         }
+		         } else if (e.getClickCount() == 1){
+						JTable target = (JTable)e.getSource();
+						controllerGUI.highlightSpeakers(target.getSelectedRow());
+			     }else{
+			    	 
+			     }
 		         }
 		        } );
 		JTableHeader presentationHeader = presentationTable.getTableHeader();
