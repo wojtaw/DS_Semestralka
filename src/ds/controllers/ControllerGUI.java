@@ -1,6 +1,7 @@
 package ds.controllers;
 
 import java.awt.Component;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -181,13 +182,11 @@ public class ControllerGUI {
 		ApplicationOutput.printLog("Highlighting speakers");
 		Presentations tmpPresentation = presentationList.get(selectedRow);
 		ApplicationOutput.printLog("Presentation "+tmpPresentation.getPresentationTitle());
-		int[] tmpRows = new int[tmpPresentation.getSpeakers().size()];
-		int i=0;
+		ArrayList<Integer> tmpRows = new ArrayList<Integer>();
 		for (Iterator iterator = tmpPresentation.getSpeakers().iterator(); iterator.hasNext();) {
 			Speakers tmpSpeaker = (Speakers) iterator.next();
-			tmpRows[i]=speakersList.indexOf(tmpSpeaker);
+			tmpRows.add(speakersList.indexOf(tmpSpeaker));
 			ApplicationOutput.printLog("MUSE BE HIGHLIGHTED "+speakersList.indexOf(tmpSpeaker));
-			i++;
 		}			
 		mainWindow.highlightRowsInSpeakers(tmpRows);
 	}

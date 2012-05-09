@@ -6,7 +6,9 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -186,7 +188,7 @@ public class MainWindow extends JFrame{
 		return speakerTable.getSelectedRows();
 	}	
 	
-	public void highlightRowsInSpeakers(int[] rowsToHighlight){
+	public void highlightRowsInSpeakers(ArrayList<Integer> rowsToHighlight){
 		speakerTable.setDefaultRenderer(Object.class, new CustomRenderer(rowsToHighlight));
 		speakerModel.highlightRows();
 	}	
