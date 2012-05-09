@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.dialect.function.TrimFunctionTemplate.Specification;
+
 import ds.entity.Presentations;
 import ds.entity.Speakers;
 import ds.gui.MainWindow;
@@ -190,5 +192,39 @@ public class ControllerGUI {
 		}			
 		mainWindow.highlightRowsInSpeakers(tmpRows);
 	}
+
+
+	public void createRelationship(int selectedRowSpeaker, int selectedRowPresentation) {
+		//Take speaker from selected row and find presentation at opposite table
+		Speakers speaker = speakersList.get(selectedRowSpeaker);
+		Presentations tmpPresentation = presentationList.get(selectedRowPresentation);
+		
+		if(!tmpPresentation.getSpeakers().contains(speaker)){
+			speaker.getPresentations().add(tmpPresentation);
+			
+			tmpPresentation.getSpeakers().add(speaker);
+			
+			presentationList.add(selectedRowPresentation, tmpPresentation);
+			speakersList.add(selectedRowSpeaker, speaker);
+			
+			appDriver.hibernateProxy.updateSpeaker(speaker);			
+		}else{
+			speaker.getPresentations().remove(tmpPresentation);
+			
+			tmpPresentation.getSpeakers().remove(speaker);
+			
+			presentationList.remove(tmpPresentation);
+			speakersList.remove(speaker);
+			
+			appDriver.hibernateProxy.updateSpeaker(speaker);			
+		}
+		
+		presentationList = appDriver.hibernateProxy.retrievePresentationData();
+		speakersList = appDriver.hibernateProxy.retrieveSpeakersData();
+		refreshPresentationTable();
+		refreshSpeakerTable();
+		highlightSpeakers(selectedRowPresentation);
+	}
+
 
 }

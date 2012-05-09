@@ -18,9 +18,11 @@ public class PresentationTableModel extends AbstractTableModel{
         );    
 
     public PresentationTableModel(){
+    	//super();
         columnNames.add("Presentation title");
         columnNames.add("Description");
         columnNames.add("Pres. ID");
+        fireTableStructureChanged();
     }	
     public void swapData(Object[][] data){
     	this.data = data;

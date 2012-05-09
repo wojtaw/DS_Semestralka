@@ -35,6 +35,11 @@ public class HibernateProxy {
 	
 	public boolean updatePresentation(Presentations presentationToUpdate){
 		session.beginTransaction();
+		ApplicationOutput.printLog("UPDATING "+presentationToUpdate.getPresentationTitle());
+		for (Iterator iterator = presentationToUpdate.getSpeakers().iterator(); iterator.hasNext();) {
+			Speakers tmpSpeaker = (Speakers) iterator.next();
+			ApplicationOutput.printLog("SPEAKERS OF THE PRESENTATION"+tmpSpeaker.getSpeakerName());
+		}					
 		session.saveOrUpdate(presentationToUpdate);
 		session.getTransaction().commit();			
 		return true;
@@ -50,6 +55,13 @@ public class HibernateProxy {
 	
 	public boolean updateSpeaker(Speakers speakerToUpdate){
 		session.beginTransaction();
+		
+		ApplicationOutput.printLog("UPDATING "+speakerToUpdate.getSpeakerName());
+		for (Iterator iterator = speakerToUpdate.getPresentations().iterator(); iterator.hasNext();) {
+			Presentations tmpPresentation = (Presentations) iterator.next();
+			ApplicationOutput.printLog("SPEAKERS OF THE PRESENTATION"+tmpPresentation.getPresentationTitle());
+		}			
+		
 		session.saveOrUpdate(speakerToUpdate);
 		session.getTransaction().commit();			
 		return true;
@@ -61,6 +73,23 @@ public class HibernateProxy {
 		session.delete(speaker);
 		session.getTransaction().commit();			
 		return true;		
+	}
+
+	public boolean updateSpeakerRelation(Speakers speakerToUpdate) {
+		session.close();
+		session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		
+		ApplicationOutput.printLog("UPDATING "+speakerToUpdate.getSpeakerName());
+		for (Iterator iterator = speakerToUpdate.getPresentations().iterator(); iterator.hasNext();) {
+			Presentations tmpPresentation = (Presentations) iterator.next();
+			ApplicationOutput.printLog("SPEAKERS OF THE PRESENTATION"+tmpPresentation.getPresentationTitle());
+		}			
+		
+		session.saveOrUpdate(speakerToUpdate);
+		session.getTransaction().commit();			
+		return true;
+		
 	}	
 	
 	

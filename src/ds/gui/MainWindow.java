@@ -116,11 +116,10 @@ public class MainWindow extends JFrame{
 		presentationTable.getColumnModel().getSelectionModel().addListSelectionListener(presentationTableListener);
 		presentationTable.addMouseListener(new MouseAdapter(){
 		     public void mouseClicked(MouseEvent e){
+		    	 JTable target = (JTable)e.getSource();
 		         if (e.getClickCount() == 2){
-					JTable target = (JTable)e.getSource();
 					controllerGUI.showPresentationDetails(target.getSelectedRow());
 		         } else if (e.getClickCount() == 1){
-						JTable target = (JTable)e.getSource();
 						controllerGUI.highlightSpeakers(target.getSelectedRow());
 			     }else{
 			    	 
@@ -143,10 +142,13 @@ public class MainWindow extends JFrame{
 		//speakerTable.getColumnModel().getSelectionModel().addListSelectionListener(mainWindowListener);
 		speakerTable.addMouseListener(new MouseAdapter(){
 		     public void mouseClicked(MouseEvent e){
+		    	 JTable target = (JTable)e.getSource();
 		         if (e.getClickCount() == 2){
-					JTable target = (JTable)e.getSource();
 					controllerGUI.showSpeakeerDetails(target.getSelectedRow());
 		         }
+		         speakerModel.highlightRows();
+		         speakerTable.setDefaultRenderer(Object.class, new CustomRendererSpeakers(true, target.getSelectedRow()));
+		         controllerGUI.createRelationship(target.getSelectedRow(), presentationTable.getSelectedRow());
 		         }
 		        } );
 		JTableHeader speakerHeader = speakerTable.getTableHeader();
@@ -189,7 +191,7 @@ public class MainWindow extends JFrame{
 	}	
 	
 	public void highlightRowsInSpeakers(ArrayList<Integer> rowsToHighlight){
-		speakerTable.setDefaultRenderer(Object.class, new CustomRenderer(rowsToHighlight));
+		speakerTable.setDefaultRenderer(Object.class, new CustomRendererPresentations(rowsToHighlight));
 		speakerModel.highlightRows();
 	}	
 
