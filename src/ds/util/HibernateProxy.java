@@ -31,6 +31,11 @@ public class HibernateProxy {
 		session.getTransaction().commit();			
 		return true;
 	}
+
+	public void deletePresentation(Presentations presentation) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
