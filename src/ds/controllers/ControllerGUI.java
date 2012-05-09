@@ -8,6 +8,7 @@ import ds.entity.Presentations;
 import ds.entity.Speakers;
 import ds.gui.MainWindow;
 import ds.gui.PresentationDetailsWindow;
+import ds.gui.SpeakerDetailsWindow;
 import ds.start.AppDriver;
 import ds.util.ApplicationOutput;
 
@@ -15,6 +16,7 @@ public class ControllerGUI {
 	private AppDriver appDriver;
 	private MainWindow mainWindow;
 	private PresentationDetailsWindow presentationDetailsWindow;
+	private SpeakerDetailsWindow speakerDetailsWindow;
 	private List<Presentations> presentationList;
 	private List<Speakers> speakersList;
 	
@@ -38,14 +40,14 @@ public class ControllerGUI {
 
 
 	public void showPresentationDetails(int selectedRow) {
-		System.out.println(presentationList.get(selectedRow).getPresentationTitle());
 		Presentations tmpPresentation = presentationList.get(selectedRow);
 		presentationDetailsWindow = new PresentationDetailsWindow(this,tmpPresentation);
 	}
 	
 
 	public void showSpeakeerDetails(int selectedRow) {
-		// TODO Auto-generated method stub
+		Speakers tmpSpeaker = speakersList.get(selectedRow);
+		speakerDetailsWindow = new SpeakerDetailsWindow(this,tmpSpeaker);
 		
 	}	
 	
@@ -82,7 +84,6 @@ public class ControllerGUI {
 				refreshPresentationTable();
 			}		
 		}
-
 	}
 
 

@@ -35,7 +35,6 @@ public class HibernateProxy {
 	
 	public boolean updatePresentation(Presentations presentationToUpdate){
 		session.beginTransaction();
-		
 		session.saveOrUpdate(presentationToUpdate);
 		session.getTransaction().commit();			
 		return true;
@@ -43,13 +42,26 @@ public class HibernateProxy {
 
 	public boolean deletePresentation(Presentations presentation) {
 		ApplicationOutput.printLog("Attempting to delete presentation");
-		
 		session.beginTransaction();
 		session.delete(presentation);
 		session.getTransaction().commit();			
 		return true;		
-		
 	}
+	
+	public boolean updateSpeaker(Speakers speakerToUpdate){
+		session.beginTransaction();
+		session.saveOrUpdate(speakerToUpdate);
+		session.getTransaction().commit();			
+		return true;
+	}
+
+	public boolean deleteSpeaker(Speakers speaker) {
+		ApplicationOutput.printLog("Attempting to delete presentation");
+		session.beginTransaction();
+		session.delete(speaker);
+		session.getTransaction().commit();			
+		return true;		
+	}	
 	
 	
 
