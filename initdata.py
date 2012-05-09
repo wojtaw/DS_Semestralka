@@ -96,8 +96,8 @@ def randomPresentation(folders):
 
 statistic = connection.prepare("INSERT INTO statistics (presentation_id, user_id, loads_count, finishes_count, plays_count) VALUES ($1, $2, $3, $4, $5)")
 def randomStatistic(presentations, users):
-	lc = random.randint(1, 40)
-	pc = random.randint(0, lc)
+	lc = random.randint(1, 15)
+	pc = random.randint(1, lc)
 	fc = random.randint(0, pc)
 	addRow(statistic, (random.choice(presentations), random.choice(users), lc, fc, pc))
 
@@ -114,12 +114,12 @@ def randomTP(tags, presentations):
 	addRow(tag_presentation, (random.choice(tags), random.choice(presentations)))
 
 # počty jednotlivých záznamů v db
-channelsN = 16
-speakersN = 16
+channelsN = 48
+speakersN = 48
 foldersN = 48
 presentationsN = foldersN*6
 subscriptionsN = 25
-statisticsN = channelsN*presentationsN//20
+statisticsN = channelsN*presentationsN//5
 tagsN = 64
 tags_presentationsN = presentationsN*2
 
@@ -137,8 +137,34 @@ if __name__ == "__main__":
 		randomFolder(channelids)
 	foldersids = getIDs("folders")
 	print("Adding presentations")
-	for x in range(presentationsN):
+
+	# Custom
+	addRow(presentation, ("Introduction to string theory", "A comprehensive lecture on the foundations of modern string theory. Aimed at non prefessional audience.",
+			"en", randomTimestamp(), "local", None, random.randint(15,4*60), random.choice((True,False)), random.choice((True,False)), random.choice(foldersids)))
+	addRow(presentation, ("Consequences of findings in universal algebra to group theory", "This presentation explains some newly discovered theorems in abstract algebra. Listeners are expected to have solid theorethical background.",
+			"en", randomTimestamp(), "local", None, random.randint(15,4*60), random.choice((True,False)), random.choice((True,False)), random.choice(foldersids)))
+	addRow(presentation, ("Global warming discussion", "A video record of a discussion about global warming. Possible causes, consequences etc.",
+			"en", randomTimestamp(), "local", None, random.randint(15,4*60), random.choice((True,False)), random.choice((True,False)), random.choice(foldersids)))
+	addRow(presentation, ("ILP & AI", "A lecture about inductive logic programming and it's uses in artificial inteligence, especially machine learning.",
+			"en", randomTimestamp(), "local", None, random.randint(15,4*60), random.choice((True,False)), random.choice((True,False)), random.choice(foldersids)))
+	addRow(presentation, ("Economical crisis", "This video features famous experts discussing the current global economical crisis.",
+			"en", randomTimestamp(), "local", None, random.randint(15,4*60), random.choice((True,False)), random.choice((True,False)), random.choice(foldersids)))
+	addRow(presentation, ("Vernissage in Prague", "A commented walk through a newly opened art gallery in the Prague Castle.",
+			"en", randomTimestamp(), "local", None, random.randint(15,4*60), random.choice((True,False)), random.choice((True,False)), random.choice(foldersids)))
+	addRow(presentation, ("Remarkable botany", "In this video, you'll learn some interesting facts about the lives of plants. This presentation also icludes never before seen photos from Amazon.",
+			"en", randomTimestamp(), "local", None, random.randint(15,4*60), random.choice((True,False)), random.choice((True,False)), random.choice(foldersids)))
+	addRow(presentation, ("Life on Moon", "Most people think there was never life on Moon. But can we be really sure? Watch this presentation to find out!",
+			"en", randomTimestamp(), "local", None, random.randint(15,4*60), random.choice((True,False)), random.choice((True,False)), random.choice(foldersids)))
+	addRow(presentation, ("Nanotechnologies in medicine", "New discoveries and ongoing nanotechnology research with possible future uses in medicine",
+			"en", randomTimestamp(), "local", None, random.randint(15,4*60), random.choice((True,False)), random.choice((True,False)), random.choice(foldersids)))
+	addRow(presentation, ("Enterprise Java", "Management and programming of big projects in Java. Presenting libraries you shouldn't overlook and a discusstion about current trends and aproaches to project administration.",
+			"en", randomTimestamp(), "local", None, random.randint(15,4*60), random.choice((True,False)), random.choice((True,False)), random.choice(foldersids)))
+
+
+	for x in range(presentationsN-10):
 		randomPresentation(foldersids)
+
+	connection.execute("UPDATE presentations SET service_id=NULL WHERE service='local';")
 	print("Adding subscriptions")
 	for x in range(subscriptionsN):
 		randomSubscription(channelids)
@@ -153,3 +179,4 @@ if __name__ == "__main__":
 	print("Adding tags_presentations")
 	for x in range(tags_presentationsN):
 		randomTP(tagids, presentationids)
+

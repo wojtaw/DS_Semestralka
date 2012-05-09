@@ -30,3 +30,15 @@ FROM
 GROUP BY c1.p_id
 ORDER BY correlation DESC
 LIMIT $2 OFFSET 1;
+
+/* Fulltext vyhledávání videí (anglický) */
+PREPARE fulltext_english (varchar) AS
+SELECT
+	id,
+	ts_headline('english',title,to_tsquery($1)) AS title,
+	ts_headline('english',description,to_tsquery($1)) AS description,
+	ts_rank_cd(to_tsvector('english', title || ' ' || description),to_tsquery($1),17) AS rank
+FROM presentations
+WHERE to_tsvector('english', title || ' ' || description) @@ to_tsquery($1)
+ORDER BY rank DESC LIMIT 10;
+
