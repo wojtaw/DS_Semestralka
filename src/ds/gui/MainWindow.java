@@ -171,6 +171,10 @@ public class MainWindow extends JFrame{
 	public int[] getSelectedRowPresentation(){
 		return presentationTable.getSelectedRows();
 	}
+	
+	public int[] getSelectedRowSpeaker(){
+		return speakerTable.getSelectedRows();
+	}	
 
 	
 	

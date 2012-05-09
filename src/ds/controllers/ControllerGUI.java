@@ -132,13 +132,25 @@ public class ControllerGUI {
 
 
 	public void clickedSpeakerDelete() {
-
+		//Check if there is any row selected in table
+		if(mainWindow.getSelectedRowSpeaker().length <= 0) ApplicationOutput.printLog("YOU DID NOT SELECT ANY PRESENTATION");
+		else if(mainWindow.getSelectedRowSpeaker().length > 1) ApplicationOutput.printLog("Please select only one presentation to edit");
+		else {
+			int tmpSelectedRow = mainWindow.getSelectedRowSpeaker()[0];
+			Speakers tmpSpeaker = speakersList.remove(tmpSelectedRow);			
+			appDriver.hibernateProxy.deleteSpeaker(tmpSpeaker);	
+			refreshSpeakerTable();			
+		}
 	}
 
 
 	public void clickedSpeakerEdit() {
 		//Check if there is any row selected in table
-	
+		if(mainWindow.getSelectedRowSpeaker().length <= 0) ApplicationOutput.printLog("YOU DID NOT SELECT ANY PRESENTATION");
+		else if(mainWindow.getSelectedRowSpeaker().length > 1) ApplicationOutput.printLog("Please select only one presentation to edit");
+		else {
+			showSpeakeerDetails(mainWindow.getSelectedRowSpeaker()[0]);
+		}	
 	}
 
 
