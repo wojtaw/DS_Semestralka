@@ -155,8 +155,7 @@ public class ControllerGUI {
 
 
 	public void clickedSpeakerNew() {
-		// TODO Auto-generated method stub
-		
+		speakerDetailsWindow = new SpeakerDetailsWindow(this);
 	}
 
 
@@ -166,5 +165,14 @@ public class ControllerGUI {
 	
 	public Component getSpeakerPanel() {
 		return mainWindow.speakerPanel;
+	}
+
+
+	public void addSpeaker(String speakerName) {
+		Speakers tmpSpeaker = new Speakers(speakerName);
+		appDriver.hibernateProxy.updateSpeaker(tmpSpeaker);
+		speakersList = appDriver.hibernateProxy.retrieveSpeakersData();
+		refreshPresentationTable();
+		refreshSpeakerTable();
 	}
 }

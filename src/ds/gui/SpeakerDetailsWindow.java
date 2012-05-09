@@ -25,10 +25,32 @@ public class SpeakerDetailsWindow extends JFrame{
 	private GridLayout myGrid = new GridLayout(0,2);
 
 	public SpeakerDetailsWindow(ControllerGUI controllerGUI, Speakers selectedSpeaker) {
-		this.selectedSpeaker = selectedSpeaker;
 		this.controllerGUI = controllerGUI;
+		this.selectedSpeaker = selectedSpeaker;		
 		initWindow();
 		initComponents();
+	}
+	
+
+	public SpeakerDetailsWindow(ControllerGUI controllerGUI) {
+		this.controllerGUI = controllerGUI;
+		initWindow();
+		initInsertionComponents();
+	}	
+	
+	private void initInsertionComponents() {
+		titleEdit = new JTextField();
+		titleEdit.setEditable(true);
+		presentationList = new JLabel("CAN BE EDITED IN MAIN WINDOW");
+		
+		saveDetails = new JButton("Add speaker");
+		saveDetails.addMouseListener(new MouseAdapter(){
+		     public void mouseClicked(MouseEvent e){
+					controllerGUI.addSpeaker(titleEdit.getText());
+					setVisible(false);
+		         }
+		     } );
+		addComponents();		
 	}
 	
 	private void initComponents() {
@@ -43,15 +65,17 @@ public class SpeakerDetailsWindow extends JFrame{
 					setVisible(false);
 		         }
 		     } );
+		addComponents();		
+	}
 	
-		
+	private void addComponents(){
 		this.add(title);
 		this.add(titleEdit);
 		this.add(presentations);
 		this.add(presentationList);
 		this.add(saveDetails);
 		this.pack();
-		this.validate();
+		this.validate();		
 	}
 
 	private String getPresentationsList() {
