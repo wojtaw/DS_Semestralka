@@ -78,7 +78,11 @@ public class ControllerGUI {
 
 	public void clickedPresentationEdit() {
 		//Check if there is any row selected in table
-		ApplicationOutput.printLog(Arrays.toString(mainWindow.getSelectedRowPresentation()));
+		if(mainWindow.getSelectedRowPresentation().length <= 0) ApplicationOutput.printLog("YOU DID NOT SELECT ANY PRESENTATION");
+		else if(mainWindow.getSelectedRowPresentation().length > 1) ApplicationOutput.printLog("Please select only one presentation to edit");
+		else {
+			showPresentationDetails(mainWindow.getSelectedRowPresentation()[0]);
+		}
 		
 	}
 
