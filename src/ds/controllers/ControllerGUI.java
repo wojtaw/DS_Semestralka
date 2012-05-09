@@ -8,6 +8,7 @@ import ds.entity.Speakers;
 import ds.gui.MainWindow;
 import ds.gui.PresentationDetailsWindow;
 import ds.start.AppDriver;
+import ds.util.ApplicationOutput;
 
 public class ControllerGUI {
 	private AppDriver appDriver;
@@ -27,14 +28,8 @@ public class ControllerGUI {
 	
 	public void initGUIData(List<Presentations> presentationList){
 		this.presentationList = presentationList;
-		//Create and fill data object for presentation table
-		Object[][] presentationData = new Object[presentationList.size()][2];
-		for (int i = 0; i < presentationList.size(); i++) {
-			presentationData[i][0] = presentationList.get(i).getPresentationTitle();
-			presentationData[i][1] = presentationList.get(i).getPresentationDescription();
-			//presentationData[i][2] = presentationList.get(i).getPresentationId();
-		}		
-		mainWindow.initDataComponents(presentationData);
+		mainWindow.initDataComponents();
+		refreshPresentationTable();
 	}
 
 
@@ -44,11 +39,31 @@ public class ControllerGUI {
 		presentationDetailsWindow = new PresentationDetailsWindow(this,tmpPresentation);
 		
 	}
+	
+	private void refreshPresentationTable() {
+		//Create and fill data object for presentation table
+		Object[][] presentationData = new Object[presentationList.size()][2];
+		for (int i = 0; i < presentationList.size(); i++) {
+			presentationData[i][0] = presentationList.get(i).getPresentationTitle();
+			presentationData[i][1] = presentationList.get(i).getPresentationDescription();
+			//presentationData[i][2] = presentationList.get(i).getPresentationId();
+		}
+		
+	}	
 
 
-	public void savePresentationDetails(String title, String description, long id) {
-		Presentations updatedPresentation = new Presentations();
-		appDriver.hibernateProxy.updatePresentation(updatedPresentation, id);
+	public void savePresentationDetails(String title, String description, long presentationID) {
+		//appDriver.hibernateProxy.updatePresentation(updatedPresentation, id);
+		for (Presentations presentation : presentationList){
+			//If found with proper id, update fields and save it
+			if(presentation.getPresentationId() == presentationID){
+				ApplicationOutput.printLog("Now attempt to update presentation,after it was found in list");
+				presentation.setPresentationTitle(title);
+				presentation.setPresentationDescription(description);
+				appDriver.hibernateProxy.updatePresentation(presentation);
+				refreshPresentationTable();
+			}		
+		}
 		
 	}
 

@@ -38,7 +38,7 @@ public class PresentationDetailsWindow extends JFrame{
 		saveDetails = new JButton("Save details");
 		saveDetails.addMouseListener(new MouseAdapter(){
 		     public void mouseClicked(MouseEvent e){
-					controllerGUI.savePresentationDetails(titleEdit.getText(),description.getText(),selectedPresentation.getPresentationId());
+					controllerGUI.savePresentationDetails(titleEdit.getText(),descriptionEdit.getText(),selectedPresentation.getPresentationId());
 		         }
 		     } );
 		

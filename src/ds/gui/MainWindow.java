@@ -21,6 +21,7 @@ public class MainWindow extends JFrame{
 	private ControllerGUI controllerGUI;
 	private BorderLayout windowLayout = new BorderLayout();	
 	private TableListener tableListeners;
+	private DataTableModel myModel;
 	
 	//Components
 	private JPanel presentationPanel = new JPanel();
@@ -52,13 +53,10 @@ public class MainWindow extends JFrame{
 		this.add(presentationPanel,BorderLayout.CENTER);
 	}
 	
-	public boolean initDataComponents(Object[][] presentationTableData){
-		if(presentationTableData == null) return false;
+	public boolean initDataComponents(){
 		//Init presentation table
 		presentationTable = new JTable();
-		DataTableModel myModel = new DataTableModel();
-		myModel.swapData(presentationTableData);
-		
+		myModel = new DataTableModel();
 		presentationTable.setModel(myModel);
 		
 		presentationTable.getSelectionModel().addListSelectionListener(tableListeners);
@@ -85,6 +83,10 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void redrawPresentationTable(Object[][] data){
+		myModel.swapData(data);
+		
+		presentationTable.setModel(myModel);
+		presentationTable.updateUI();
 		validateGUI();
 	}
 	

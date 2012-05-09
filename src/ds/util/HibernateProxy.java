@@ -24,10 +24,10 @@ public class HibernateProxy {
 		return presentations;
 	}
 	
-	public boolean updatePresentation(Presentations presentationToUpdate, long presentationID){
+	public boolean updatePresentation(Presentations presentationToUpdate){
 		session.beginTransaction();
 		
-		List<Presentations> presentations = session.createQuery("from Presentations").list();
+		session.saveOrUpdate(presentationToUpdate);
 		session.getTransaction().commit();			
 		return true;
 	}
