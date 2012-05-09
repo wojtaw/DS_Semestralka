@@ -39,7 +39,7 @@ public class SpeakerDetailsWindow extends JFrame{
 		saveDetails = new JButton("Save details");
 		saveDetails.addMouseListener(new MouseAdapter(){
 		     public void mouseClicked(MouseEvent e){
-					//controllerGUI.savePresentationDetails(titleEdit.getText(),descriptionEdit.getText(),selectedPresentationation.getPresentationId());
+					controllerGUI.saveSpeakerDetails(titleEdit.getText(),selectedSpeaker.getSpeakerId());
 					setVisible(false);
 		         }
 		     } );
@@ -56,13 +56,13 @@ public class SpeakerDetailsWindow extends JFrame{
 
 	private String getPresentationsList() {
 		StringBuilder returnedString = new StringBuilder();
-		/*
-		for (Iterator iterator = selectedSpeaker.getSpeakers().iterator(); iterator.hasNext();) {
-			Speakers tmpSpeaker = (Speakers) iterator.next();
-			returnedString.append(tmpSpeaker.getSpeakerName()+" | ");
+		
+		for (Iterator iterator = selectedSpeaker.getPresentations().iterator(); iterator.hasNext();) {
+			Presentations tmpPresentation = (Presentations) iterator.next();
+			returnedString.append(tmpPresentation.getPresentationTitle()+" | ");
 		}
-		*/	
-		if(returnedString.length() < 1) returnedString.append("No speakers added");
+		
+		if(returnedString.length() < 1) returnedString.append("No presentations yet");
 		return returnedString.toString();
 	}
 

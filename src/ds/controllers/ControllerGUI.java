@@ -86,6 +86,20 @@ public class ControllerGUI {
 			}		
 		}
 	}
+	
+
+	public void saveSpeakerDetails(String speakerName, long speakerId) {
+		for (Speakers speaker : speakersList){
+			//If found with proper id, update fields and save it
+			if(speaker.getSpeakerId() == speakerId){
+				ApplicationOutput.printLog("Now attempt to update speaker,after it was found in list");
+				speaker.setSpeakerName(speakerName);
+				appDriver.hibernateProxy.updateSpeaker(speaker);
+				refreshSpeakerTable();
+			}		
+		}
+	}	
+	
 
 
 	public void clickedPresentationDelete() {
@@ -107,8 +121,7 @@ public class ControllerGUI {
 		else if(mainWindow.getSelectedRowPresentation().length > 1) ApplicationOutput.printLog("Please select only one presentation to edit");
 		else {
 			showPresentationDetails(mainWindow.getSelectedRowPresentation()[0]);
-		}
-		
+		}	
 	}
 
 
@@ -124,8 +137,8 @@ public class ControllerGUI {
 
 
 	public void clickedSpeakerEdit() {
-		// TODO Auto-generated method stub
-		
+		//Check if there is any row selected in table
+	
 	}
 
 
@@ -141,6 +154,5 @@ public class ControllerGUI {
 	
 	public Component getSpeakerPanel() {
 		return mainWindow.speakerPanel;
-	}	
-
+	}
 }
