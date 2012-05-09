@@ -26,28 +26,10 @@ public class CustomRenderer extends DefaultTableCellRenderer
             boolean isSelected, boolean hasFocus, int row, int column)   
     {   
 		
-		/*
-		for (int i = 0; i < rowsToHighlight.length; i++) {
-			if(row == rowsToHighlight[i]){ 
-				System.out.println("FOUND: "+rowsToHighlight[i]);
-				setForeground(Color.black);          
-				setBackground(Color.red);              
-			}else{      
-				setBackground(Color.white);      
-				setForeground(Color.black);      
-			}   
-		}
-		*/
-		
-		if(row == 3){ 
-			setForeground(Color.black);          
-			setBackground(Color.red);
-		} else if(row == 4){ 
-			setForeground(Color.black);          
-			setBackground(Color.red);			
+		if(rowsToHighlight.contains(row)){         
+			setBackground(Color.cyan);		
 		}else{      
-			setBackground(Color.white);      
-			setForeground(Color.black);      
+			setBackground(Color.white);            
 		}   		
         setText(value !=null ? value.toString() : "");  
         return this;  
