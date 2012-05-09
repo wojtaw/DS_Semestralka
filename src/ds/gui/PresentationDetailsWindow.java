@@ -54,6 +54,8 @@ public class PresentationDetailsWindow extends JFrame{
 		this.add(titleEdit);
 		this.add(description);
 		this.add(descriptionEdit);
+		this.add(speakers);
+		this.add(speakersList);
 		this.add(saveDetails);
 		this.pack();
 		this.validate();
@@ -65,6 +67,7 @@ public class PresentationDetailsWindow extends JFrame{
 			Speakers tmpSpeaker = (Speakers) iterator.next();
 			returnedString.append(tmpSpeaker.getSpeakerName()+" | ");
 		}	
+		if(returnedString.length() < 1) returnedString.append("No speakers added");
 		return returnedString.toString();
 	}
 

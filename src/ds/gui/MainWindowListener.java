@@ -9,10 +9,10 @@ import javax.swing.event.ListSelectionListener;
 
 import ds.controllers.ControllerGUI;
 
-public class TableListener implements ActionListener, MouseListener, ListSelectionListener{
+public class MainWindowListener implements ActionListener, MouseListener, ListSelectionListener{
 	private ControllerGUI controllerGUI;
 	
-	public TableListener(ControllerGUI controllerGUI){
+	public MainWindowListener(ControllerGUI controllerGUI){
 		this.controllerGUI = controllerGUI;
 
 	}

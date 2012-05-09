@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.EventListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -21,12 +22,15 @@ import ds.util.ApplicationOutput;
 public class MainWindow extends JFrame{
 	private ControllerGUI controllerGUI;
 	private BorderLayout windowLayout = new BorderLayout();	
-	private TableListener tableListeners;
+	private MainWindowListener mainWindowListener;
 	private DataTableModel myModel;
 	
 	//Components
 	private JPanel presentationPanel = new JPanel();
 	private JTable presentationTable;
+	private MyButton presentationSave;
+	private MyButton presentationEdit;
+	private MyButton presentationRemove;
 	
 	
 	public MainWindow(ControllerGUI controllerGUI) {
@@ -37,7 +41,7 @@ public class MainWindow extends JFrame{
 	}
 
 	private void initListeners() {
-		tableListeners = new TableListener(controllerGUI);
+		mainWindowListener = new MainWindowListener(controllerGUI);
 		
 	}
 
@@ -51,7 +55,9 @@ public class MainWindow extends JFrame{
 	
 	
 	private void initComponents() {
+		presentationSave - new MyButton(text, "PRESENTATION_SAVE");
 		this.add(presentationPanel,BorderLayout.CENTER);
+		presentationPanel
 	}
 	
 	public boolean initDataComponents(){
@@ -60,8 +66,8 @@ public class MainWindow extends JFrame{
 		myModel = new DataTableModel();
 		presentationTable.setModel(myModel);
 		
-		presentationTable.getSelectionModel().addListSelectionListener(tableListeners);
-		presentationTable.getColumnModel().getSelectionModel().addListSelectionListener(tableListeners);
+		presentationTable.getSelectionModel().addListSelectionListener(mainWindowListener);
+		presentationTable.getColumnModel().getSelectionModel().addListSelectionListener(mainWindowListener);
 		presentationTable.addMouseListener(new MouseAdapter(){
 		     public void mouseClicked(MouseEvent e){
 		         if (e.getClickCount() == 2){
