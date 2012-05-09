@@ -41,4 +41,8 @@ public class SpeakerTableModel extends AbstractTableModel{
        //all cells false
        return false;
     }	
+	
+	public void highlightRows() {
+		fireTableRowsUpdated(0,data.length);
+	}	
 }

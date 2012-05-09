@@ -63,6 +63,9 @@ public class PresentationTableModel extends AbstractTableModel{
 	public String toString(){
 		return "PRESENTATIONS";
 	}
+	public void highlightRows() {
+		fireTableRowsUpdated(0,data.length);
+	}
 	
 	
 

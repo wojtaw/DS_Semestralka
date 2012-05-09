@@ -187,14 +187,8 @@ public class MainWindow extends JFrame{
 	}	
 	
 	public void highlightRowsInSpeakers(int[] rowsToHighlight){
-		TableColumn col = presentationTable.getColumnModel().getColumn(0);
-
-		col.setCellRenderer(new CustomRenderer());		
-		/*
-		presentationTable.setDefaultRenderer(String.class, new CustomRenderer());
-		//presentationModel.setRowColour(5, Color.YELLOW);
-		//presentationModel.setRowColour(6, Color.YELLOW);
-		 * */
+		speakerTable.setDefaultRenderer(Object.class, new CustomRenderer(rowsToHighlight));
+		speakerModel.highlightRows();
 	}	
 
 	
